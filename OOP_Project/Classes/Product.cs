@@ -14,6 +14,14 @@ namespace OOP_Project.Classes
         private float SRP;
         private int Items;
 
+        public Product(string name, float price, float srp, int items)
+        {
+            Name = name;
+            Price = price;
+            SRP = srp;
+            Items = items;
+        }
+
         public string GetDescription()
         {
             return Description;
