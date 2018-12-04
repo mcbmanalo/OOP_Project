@@ -63,8 +63,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Calculations.cs" />
-    <Compile Include="Classes\FullName.cs" />
+    <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Product.cs" />
+    <Compile Include="JewelryInventorySystem.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
