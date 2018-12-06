@@ -12,16 +12,7 @@ namespace OOP_Project.Classes
         private int AgeInMonths;
         private int Age;
 
-        //public int CalculateAge(DateTime birthDate)
-        //{
-        //    if ((DateTime.Today.Day - birthDate.Day) > 0)
-        //    {
-        //        return DateTime.Today.Year - birthDate.Year - 1;
-        //    }
-        //    return DateTime.Today.Year - birthDate.Year;
-        //}
-
-        public int CalculateAgeUsingMonths(string birthDate)
+        public int CalculateAge(string birthDate)
         {
             var past = ConvertBirthDate(birthDate);
             AgeInMonths = 12 * (Now.Year - past.Year) + (Now.Month - past.Month);
@@ -32,6 +23,18 @@ namespace OOP_Project.Classes
         {
             return Convert.ToDateTime(birthDate);
         }
-        
+
+        public decimal CalculateInterest(int principalAmount, decimal monthlyInterestRate )
+        {
+            return principalAmount * monthlyInterestRate / 100;
+        }
+
+        public decimal CalculateAccruedAmount(int principalAmount,decimal monthlyInterestRate)
+        {
+            return principalAmount + (CalculateInterest(principalAmount, monthlyInterestRate) * AgeInMonths);
+        }
+
     }
+
+
 }
