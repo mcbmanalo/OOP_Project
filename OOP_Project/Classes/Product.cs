@@ -9,6 +9,8 @@ namespace OOP_Project.Classes
 {
     public class Product : ObservableObject
     {
+        #region Properties
+
         public string Name
         {
             get => _name;
@@ -18,7 +20,6 @@ namespace OOP_Project.Classes
                 RaisePropertyChanged(nameof(Name));
             }
         }
-
         public string Description
         {
             get => _description;
@@ -28,7 +29,6 @@ namespace OOP_Project.Classes
                 RaisePropertyChanged(nameof(Description));
             }
         }
-
         public float Price
         {
             get => _price;
@@ -38,7 +38,6 @@ namespace OOP_Project.Classes
                 RaisePropertyChanged(nameof(Price));
             }
         }
-
         public float SRP
         {
             get => _srp;
@@ -48,7 +47,6 @@ namespace OOP_Project.Classes
                 RaisePropertyChanged(nameof(SRP));
             }
         }
-
         public int Items
         {
             get => _items;
@@ -59,11 +57,19 @@ namespace OOP_Project.Classes
             }
         }
 
+        #endregion
+
+        #region Fields
+
         private string _name;
         private string _description;
         private int _items;
         private float _srp;
         private float _price;
+
+        #endregion
+
+        #region Constructor
 
         public Product(string name, float price, float srp, int items)
         {
@@ -72,6 +78,10 @@ namespace OOP_Project.Classes
             SRP = srp;
             Items = items;
         }
+
+        #endregion
+
+        #region Methods
 
         public string GetDescription()
         {
@@ -82,5 +92,8 @@ namespace OOP_Project.Classes
         {
             Items = Items - items;
         }
+
+        #endregion
+
     }
 }

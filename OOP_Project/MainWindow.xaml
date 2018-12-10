@@ -18,14 +18,15 @@
                     Width="150"
                     HorizontalAlignment="Right"
                     Margin="10"
-                    Command="{Binding Path = TryCommand}"
+                    Command ="{Binding Path=TestCommand}"
                     Content="Transaction"></Button>     
             <Button Height="20"
                     Width="150"
                     HorizontalAlignment="Right"
                     Margin="10"
                     Content="Add New Jewelry"></Button>
-            <TextBlock Text="{Binding Path= TryThis, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Text="{Binding Path=Test, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <ListBox ItemsSource="{Binding Path=TestExcelReader, UpdateSourceTrigger=PropertyChanged}"></ListBox>
         </StackPanel>
 
         <StackPanel Grid.Column="1">

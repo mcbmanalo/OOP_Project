@@ -8,15 +8,12 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace OOP_Project.Classes
 {
-    public class Calculations:Excel
+    public class Calculations
     {
         private DateTime Now = DateTime.UtcNow;
         private int AgeInMonths;
         private int Age;
 
-        public Calculations(string path, int sheet) : base(path, sheet)
-        {
-        }
         public int CalculateAge(string birthDate)
         {
             var past = ConvertBirthDate(birthDate);
@@ -24,6 +21,7 @@ namespace OOP_Project.Classes
             Age = AgeInMonths / 12;
             return Age;
         }
+
         public DateTime ConvertBirthDate(string birthDate)
         {
             return Convert.ToDateTime(birthDate);
@@ -39,17 +37,6 @@ namespace OOP_Project.Classes
             return principalAmount + (CalculateInterest(principalAmount, monthlyInterestRate) * AgeInMonths);
         }
 
-        public decimal GetSalary(bool fullTime, decimal rate)
-        {
-            return 0;
-        }
-
-        public decimal GetDataFromApi()
-        {
-            return 0;
-        }
-
-        
     }
 
 
