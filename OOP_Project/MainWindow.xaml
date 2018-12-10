@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_Project"
         mc:Ignorable="d"
+        DataContext="{Binding Path=MainVM, Source={StaticResource Locator}}"
         Title="Jewelry Inventory" Height="450" Width="800">
     <Grid Background="#FDF0D5">
         <Grid.ColumnDefinitions>
@@ -17,12 +18,14 @@
                     Width="150"
                     HorizontalAlignment="Right"
                     Margin="10"
+                    Command="{Binding Path = TryCommand}"
                     Content="Transaction"></Button>     
             <Button Height="20"
                     Width="150"
                     HorizontalAlignment="Right"
                     Margin="10"
                     Content="Add New Jewelry"></Button>
+            <TextBlock Text="{Binding Path= TryThis, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Grid.Column="1">
