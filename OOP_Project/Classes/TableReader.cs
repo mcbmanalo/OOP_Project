@@ -8,17 +8,16 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace OOP_Project.Classes
 {
-    public class Excel
+    public class TableReader
     {
-        public string Path = "";
+        public string Path = @"C:\Users\MCBManalo\Documents\GitHub\OOP_Project\OOP_Project\References\Tax Table.xlsx";
 
         _Application excel = new _Excel.Application();
         private Workbook WorkBook;
         private Worksheet WorkSheet;
 
-        public Excel(string path, int sheet)
+        public TableReader( int sheet)
         {
-            this.Path = path;
             WorkBook = excel.Workbooks.Open(Path);
             WorkSheet = WorkBook.Worksheets[sheet];
         }
@@ -28,7 +27,7 @@ namespace OOP_Project.Classes
             i++;
             j++;
             if (WorkSheet.Cells[i, j].Value2 != null)
-                return WorkSheet.Cells[i, j].Value2;
+                return Convert.ToString(WorkSheet.Cells[i, j].Value2);
             else
                 return "";
         }
