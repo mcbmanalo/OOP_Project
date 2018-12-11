@@ -1,43 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using System.Collections.ObjectModel;
+using System.IO;
+using ExcelDataReader;
+using OOP_Project.Classes;
 
 namespace OOP_Project.ViewModels
 {
-    public class MainVM : INotifyPropertyChanged
+    public class MainVM : ObservableObject
     {
+        public List<Product> JewelryItemsList = new List<Product>();
+        public List<Person> CustomerList = new List<Person>();
+        public List<Person> EmployeeList = new List<Person>();
+        public List<string> TestExcelReader { get; } = new List<string>();
+        public ICommand TestCommand => new RelayCommand(OpenExcel);
         private string _test;
-        
+
         public string Test
         {
             get => _test;
             set
             {
                 _test = value;
-                OnPropertyChanged(Test);
+                RaisePropertyChanged(nameof(Test));
             }
         }
 
-        public ICommand ClickCommand => new RelayCommand(Write);
-
-        public void Write()
+        public void OpenExcel()
         {
-            Test = "Hello this is a test";
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
+            using (var stream = File.Open(Test, FileMode.Open, FileAccess.Read))
             {
-                handler(this, new PropertyChangedEventArgs(name));
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                            TestExcelReader.Add(reader.GetString(1));   
+                        }
+                    } while (reader.NextResult());
+                }
             }
         }
     }

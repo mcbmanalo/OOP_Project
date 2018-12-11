@@ -11,9 +11,8 @@ namespace OOP_Project
     {
         public ViewModelLocator()
         {
-            MainVm = new MainVM();
+            MainVM = new MainVM();
         }
-
-        public MainVM MainVm { get; set; }
+        public MainVM MainVM { get; }
     }
 }
