@@ -24,5 +24,13 @@ CalculateAge method:
 
 CalculateInterest method:
 	Accepts a two int parameters
-	First parameter is the 
+	First parameter is the principal amount of type int
+	Second parameter is a decimal type that should be the monthly interest rate
+	The method returns the product of the first parameter and the quotient of the second parameter with 100
 
+CalculateAccruedAmount method:
+	Accepts a two int parameters
+	First parameter is the principal amount of type int
+	Second parameter is a decimal type that should be the monthly interest rate
+
+	
