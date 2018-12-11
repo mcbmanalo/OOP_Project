@@ -16,16 +16,19 @@ namespace OOP_Project.Classes
         private Workbook WorkBook;
         private Worksheet WorkSheet;
 
-        public TableReader( int sheet)
+        public TableReader()
         {
             WorkBook = excel.Workbooks.Open(Path);
-            WorkSheet = WorkBook.Worksheets[sheet];
+            WorkSheet = WorkBook.Worksheets[1];
         }
 
-        public string ReadCell(int i, int j)
+        public string ReadCell(int i , int j)
         {
-            i++;
-            j++;
+            if (i == 0)
+                i++;
+            if (j == 0)
+                j++;
+            
             if (WorkSheet.Cells[i, j].Value2 != null)
                 return Convert.ToString(WorkSheet.Cells[i, j].Value2);
             else

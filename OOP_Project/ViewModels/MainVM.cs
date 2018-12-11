@@ -21,7 +21,8 @@ namespace OOP_Project.ViewModels
         public List<Person> EmployeeList = new List<Person>();
         public List<string> TestExcelReader { get; } = new List<string>();
         public ICommand TestCommand => new RelayCommand(Try);
-        public TableReader ReadExcel = new TableReader(1);
+        public TableReader ReadExcel = new TableReader();
+        public Calculations Calculate = new Calculations();
         private string _test;
 
         public string Test
@@ -34,26 +35,9 @@ namespace OOP_Project.ViewModels
             }
         }
 
-        public void OpenExcel()
-        {
-            using (var stream = File.Open(Test, FileMode.Open, FileAccess.Read))
-            {
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
-                {
-                    do
-                    {
-                        while (reader.Read())
-                        {
-                            TestExcelReader.Add(reader.GetString(1));   
-                        }
-                    } while (reader.NextResult());
-                }
-            }
-        }
-
         public void Try()
         {
-            Test = ReadExcel.ReadCell(5, 5);
+           Test = Convert.ToString(Calculate.GetPayroll(25000));
         }
 
     }

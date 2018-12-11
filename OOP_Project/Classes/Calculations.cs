@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Office.Interop.Excel;
-using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace OOP_Project.Classes
 {
@@ -13,6 +11,12 @@ namespace OOP_Project.Classes
         private DateTime Now = DateTime.UtcNow;
         private int AgeInMonths;
         private int Age;
+        private TableReader TaxReader = new TableReader();
+
+        private DateTime ConvertBirthDate(string birthDate)
+        {
+            return Convert.ToDateTime(birthDate);
+        }
 
         public int CalculateAge(string birthDate)
         {
@@ -20,11 +24,6 @@ namespace OOP_Project.Classes
             AgeInMonths = 12 * (Now.Year - past.Year) + (Now.Month - past.Month);
             Age = AgeInMonths / 12;
             return Age;
-        }
-
-        public DateTime ConvertBirthDate(string birthDate)
-        {
-            return Convert.ToDateTime(birthDate);
         }
 
         public decimal CalculateInterest(int principalAmount, decimal monthlyInterestRate )
@@ -35,6 +34,11 @@ namespace OOP_Project.Classes
         public decimal CalculateAccruedAmount(int principalAmount,decimal monthlyInterestRate)
         {
             return principalAmount + (CalculateInterest(principalAmount, monthlyInterestRate) * AgeInMonths);
+        }
+
+        public double GetPayroll(int salary)
+        {
+            return salary * double.Parse(TaxReader.ReadCell(5, 5));
         }
 
     }

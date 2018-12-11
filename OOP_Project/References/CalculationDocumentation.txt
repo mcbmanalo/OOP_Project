@@ -1,0 +1,28 @@
+This text file will explain the different methods and parameters of the Calculation class
+
+The Calculation class is used to calculate various things
+Fields:
+Now => is a private DateTime type which is given the value of the DateTime of the present
+AgeInMonths => is a private int type of variable
+Age => is a private int type of variable
+TaxReader => is a private instance of the TableReader class used to read an cell in an excel
+
+There are 5 methods that will be explained here in this file
+
+ConvertBirthDate method:
+	Accepts a string as parameter
+	Its access modifier is private
+	This class simply converts the string into a DateTime type
+
+CalculateAge method:
+	Accepts a string as a parameter which should be a birthday
+	This method calls the ConvertBirthDate method to convert the parameter into a DateTime type
+	It then takes the Year from the Now field and subtracts it to the year of the converted parameter
+	After subtracting the two, it then multiplies it by 12 to convert years into months
+	It then adds it to the difference of the months of the Now field and the converted parameter
+	It then returns the sum divided by 12 to convert into years
+
+CalculateInterest method:
+	Accepts a two int parameters
+	First parameter is the 
+
