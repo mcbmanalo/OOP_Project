@@ -57,6 +57,17 @@ namespace OOP_Project.Classes
             }
         }
 
+        public decimal MonthlyInterestRate
+        {
+            get => _monthlyInterestRate;
+            set
+            {
+                _monthlyInterestRate = value;
+                RaisePropertyChanged(nameof(MonthlyInterestRate));
+            }
+        }
+
+
         #endregion
 
         #region Fields
@@ -66,17 +77,19 @@ namespace OOP_Project.Classes
         private int _items;
         private float _srp;
         private float _price;
+        private decimal _monthlyInterestRate;
 
         #endregion
 
         #region Constructor
 
-        public Product(string name, float price, float srp, int items)
+        public Product(string name, float price, decimal monthlyInterestRate, int items, string description)
         {
             Name = name;
             Price = price;
-            SRP = srp;
+            MonthlyInterestRate = monthlyInterestRate;
             Items = items;
+            Description = description;
         }
 
         #endregion
