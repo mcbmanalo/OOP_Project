@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using Microsoft.Office.Interop.Excel;
 using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace OOP_Project.Classes
 {
-    public class Excel
+    public class Excel : ObservableObject
     {
         public string Path = @"C:\Users\MCBManalo\Documents\GitHub\OOP_Project\OOP_Project\References\Tax Table.xlsx";
         //public string Path = @"C:\Users\Admin\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
@@ -16,6 +17,28 @@ namespace OOP_Project.Classes
         _Application excel = new _Excel.Application();
         private Workbook WorkBook;
         private Worksheet WorkSheet;
+        private int _row;
+        private int _column;
+
+        public int Row
+        {
+            get => _row;
+            set
+            {
+                _row = value;
+                RaisePropertyChanged(nameof(Row));
+            }
+        }
+
+        public int Column
+        {
+            get => _column;
+            set
+            {
+                _column = value;
+                RaisePropertyChanged(nameof(Column));
+            }
+        }
 
         public Excel()
         {
@@ -51,6 +74,12 @@ namespace OOP_Project.Classes
         public void SaveAs()
         {
             WorkBook.SaveAs(Path);
+        }
+
+        private void GetMaximumRowsAndColumns()
+        {
+            int row = 1;
+            int column = 1;
         }
     }
 }
