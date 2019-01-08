@@ -34,5 +34,23 @@ namespace OOP_Project.Classes
             else
                 return "";
         }
+
+        public void WriteCell(int i, int j, string s)
+        {
+
+            i++;
+            j++;
+            WorkSheet.Cells[i, j].Value2 = s;
+        }
+
+        public void Save()
+        {
+            WorkBook.Save();
+        }
+
+        public void SaveAs()
+        {
+            WorkBook.SaveAs(Path);
+        }
     }
 }
