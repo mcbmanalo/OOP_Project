@@ -93,7 +93,6 @@
     <Compile Include="Classes\TableReader.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Product.cs" />
-    <Compile Include="JewelryInventorySystem.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -122,6 +121,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="References\Jewelry Inventory.xlsx" />
     <None Include="References\Tax Table.xlsx" />
   </ItemGroup>
   <ItemGroup>
