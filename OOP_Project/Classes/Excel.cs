@@ -8,40 +8,39 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace OOP_Project.Classes
 {
-    public class TableReader
+    public class Excel
     {
-        //public string Path = @"C:\Users\MCBManalo\Documents\GitHub\OOP_Project\OOP_Project\References\Tax Table.xlsx";
-        public string Path = @"C:\Users\Admin\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
+        public string Path = @"C:\Users\MCBManalo\Documents\GitHub\OOP_Project\OOP_Project\References\Tax Table.xlsx";
+        //public string Path = @"C:\Users\Admin\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
 
         _Application excel = new _Excel.Application();
         private Workbook WorkBook;
         private Worksheet WorkSheet;
 
-        public TableReader()
+        public Excel()
         {
             WorkBook = excel.Workbooks.Open(Path);
             WorkSheet = WorkBook.Worksheets[1];
         }
 
-        public string ReadCell(int i , int j)
+        public string ReadCell(int row , int column)
         {
-            if (i == 0)
-                i++;
-            if (j == 0)
-                j++;
+            if (row == 0)
+                row++;
+            if (column == 0)
+                column++;
             
-            if (WorkSheet.Cells[i, j].Value2 != null)
-                return Convert.ToString(WorkSheet.Cells[i, j].Value2);
+            if (WorkSheet.Cells[row, column].Value2 != null)
+                return Convert.ToString(WorkSheet.Cells[row, column].Value2);
             else
                 return "";
         }
 
-        public void WriteCell(int i, int j, string s)
+        public void WriteCell(int row, int column, string s)
         {
-
-            i++;
-            j++;
-            WorkSheet.Cells[i, j].Value2 = s;
+            row++;
+            column++;
+            WorkSheet.Cells[row, column].Value2 = s;
         }
 
         public void Save()

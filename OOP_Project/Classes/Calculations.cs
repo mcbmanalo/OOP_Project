@@ -11,7 +11,7 @@ namespace OOP_Project.Classes
         private DateTime Now = DateTime.UtcNow;
         private int AgeInMonths;
         private int Age;
-        private TableReader TaxReader = new TableReader();
+        private Excel TaxReader = new Excel();
 
         private DateTime ConvertBirthDate(string birthDate)
         {
@@ -36,9 +36,9 @@ namespace OOP_Project.Classes
             return principalAmount + (CalculateInterest(principalAmount, monthlyInterestRate) * AgeInMonths);
         }
 
-        public double GetPayroll(int salary)
+        public double GetPayroll(int salary, int row, int column)
         {
-            return salary * double.Parse(TaxReader.ReadCell(5, 5));
+            return salary * double.Parse(TaxReader.ReadCell(row, column));
         }
 
     }

@@ -90,7 +90,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Calculations.cs" />
-    <Compile Include="Classes\TableReader.cs" />
+    <Compile Include="Classes\Excel.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="MainWindow.xaml.cs">
