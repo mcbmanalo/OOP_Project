@@ -16,9 +16,9 @@ namespace OOP_Project.ViewModels
 {
     public class MainVM : ObservableObject
     {
-        public List<Product> JewelryItemsList = new List<Product>();
-        public List<Person> CustomerList = new List<Person>();
-        public List<Person> EmployeeList = new List<Person>();
+        public List<Product> JewelryItemsList { get; } = new List<Product>();
+        public List<Person> CustomerList { get; } = new List<Person>();
+        public List<Person> EmployeeList { get; } = new List<Person>();
         public List<string> TestExcelReader { get; } = new List<string>();
         public ICommand TestCommand => new RelayCommand(Try);
         public Excel ReadExcel = new Excel();
@@ -27,7 +27,12 @@ namespace OOP_Project.ViewModels
 
         public MainVM()
         {
-            for (int row = 0; row < 5; row++)
+            GetInventoryList();
+        }
+
+        private void GetInventoryList()
+        {
+            for (int row = 1; row < 5; row++)
             {
                 string name = "";
                 int price = 0;
@@ -35,13 +40,34 @@ namespace OOP_Project.ViewModels
                 int items = 0;
                 string description = "";
 
-                for (int column = 0; column < 4; column++)
+                for (int column = 1; column < 6; column++)
                 {
-                    
+                    switch (column)
+                    {
+                        case 1:
+                            name = Convert.ToString(ReadExcel.ReadCell(row, column));
+                            break;
+                        case 2:
+                            price = int.Parse(ReadExcel.ReadCell(row, column));
+                            break;
+                        case 3:
+                            monthlyInterestRate = decimal.Parse(ReadExcel.ReadCell(row, column));
+                            break;
+                        case 4:
+                            items = int.Parse(ReadExcel.ReadCell(row, column));
+                            break;
+                        case 5:
+                            description = Convert.ToString(ReadExcel.ReadCell(row, column));
+                            break;
+                    }
+
+                    if (column == 5)
+                    {
+                        JewelryItemsList.Add(new Product(name, price, monthlyInterestRate, items, description));
+                    }
                 }
             }
         }
-
 
         public string Test
         {
@@ -55,7 +81,7 @@ namespace OOP_Project.ViewModels
 
         public void Try()
         {
-           Test = Convert.ToString(Calculate.GetPayroll(25000,1,1));
+           Test = Convert.ToString(Calculate.GetPayroll(25000,5,5));
         }
 
     }

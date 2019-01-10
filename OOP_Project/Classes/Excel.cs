@@ -11,8 +11,9 @@ namespace OOP_Project.Classes
 {
     public class Excel : ObservableObject
     {
-        public string Path = @"C:\Users\MCBManalo\Documents\GitHub\OOP_Project\OOP_Project\References\Tax Table.xlsx";
+        //public string Path = @"C:\Users\MCBManalo\Documents\GitHub\OOP_Project\OOP_Project\References\Tax Table.xlsx";
         //public string Path = @"C:\Users\Admin\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
+        public string Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
 
         _Application excel = new _Excel.Application();
         private Workbook WorkBook;
