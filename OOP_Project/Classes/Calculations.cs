@@ -38,6 +38,7 @@ namespace OOP_Project.Classes
 
         public double GetPayroll(int salary, int row, int column)
         {
+            TaxReader.Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
             return salary * double.Parse(TaxReader.ReadCell(row, column));
         }
 

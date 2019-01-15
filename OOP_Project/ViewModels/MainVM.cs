@@ -32,11 +32,13 @@ namespace OOP_Project.ViewModels
 
         private void GetInventoryList()
         {
-            var rowCounter = 0;
-            while( ReadExcel.ReadCell(rowCounter,1) != "" )
+            //Test = ReadExcel.ReadCell(5, 1);
+            ReadExcel.Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Jewelry Inventory.xlsx";
+            var rowCounter = 2;
+            while (ReadExcel.ReadCell(rowCounter, 1) != null && ReadExcel.ReadCell(rowCounter, 1) != "")
             {
                 string name = "";
-                int price = 0;
+                float price = 0;
                 decimal monthlyInterestRate = 0;
                 int items = 0;
                 string description = "";
@@ -49,7 +51,7 @@ namespace OOP_Project.ViewModels
                             name = Convert.ToString(ReadExcel.ReadCell(rowCounter, column));
                             break;
                         case 2:
-                            price = int.Parse(ReadExcel.ReadCell(rowCounter, column));
+                            price = float.Parse(ReadExcel.ReadCell(rowCounter, column));
                             break;
                         case 3:
                             monthlyInterestRate = decimal.Parse(ReadExcel.ReadCell(rowCounter, column));
@@ -59,18 +61,17 @@ namespace OOP_Project.ViewModels
                             break;
                         case 5:
                             description = Convert.ToString(ReadExcel.ReadCell(rowCounter, column));
+                            JewelryItemsList.Add(new Product(name, price, monthlyInterestRate, items, description));
                             break;
                     }
-
-                    if (column == 5)
-                    {
-                        JewelryItemsList.Add(new Product(name, price, monthlyInterestRate, items, description));
-                    }
                 }
+
+                rowCounter++;
             }
 
             ReadExcel.Row = rowCounter;
             ReadExcel.Column = 5;
+            RaisePropertyChanged(nameof(JewelryItemsList));
         }
 
         public string Test

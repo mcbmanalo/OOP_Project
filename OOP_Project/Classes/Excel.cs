@@ -32,7 +32,6 @@ namespace OOP_Project.Classes
             }
         }
         
-
         public int Row
         {
             get => _row;
@@ -55,6 +54,7 @@ namespace OOP_Project.Classes
 
         public Excel()
         {
+            Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Jewelry Inventory.xlsx";
             WorkBook = excel.Workbooks.Open(Path);
             WorkSheet = WorkBook.Worksheets[1];
         }
