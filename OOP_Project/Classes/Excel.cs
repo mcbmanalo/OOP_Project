@@ -13,13 +13,25 @@ namespace OOP_Project.Classes
     {
         //public string Path = @"C:\Users\MCBManalo\Documents\GitHub\OOP_Project\OOP_Project\References\Tax Table.xlsx";
         //public string Path = @"C:\Users\Admin\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
-        public string Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
+        //public string Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
 
         _Application excel = new _Excel.Application();
         private Workbook WorkBook;
         private Worksheet WorkSheet;
         private int _row;
         private int _column;
+        private string _path;
+
+        public string Path
+        {
+            get => _path;
+            set
+            {
+                _path = value;
+                RaisePropertyChanged(nameof(Path));
+            }
+        }
+        
 
         public int Row
         {
@@ -76,11 +88,11 @@ namespace OOP_Project.Classes
         {
             WorkBook.SaveAs(Path);
         }
-
-        private void GetMaximumRowsAndColumns()
-        {
-            int row = 1;
-            int column = 1;
-        }
+        
+        //private void GetMaximumRowsAndColumns()
+        //{
+        //    int row = 1;
+        //    int column = 1;
+        //}
     }
 }

@@ -32,7 +32,8 @@ namespace OOP_Project.ViewModels
 
         private void GetInventoryList()
         {
-            for (int row = 1; row < 5; row++)
+            var rowCounter = 0;
+            while( ReadExcel.ReadCell(rowCounter,1) != "" )
             {
                 string name = "";
                 int price = 0;
@@ -45,19 +46,19 @@ namespace OOP_Project.ViewModels
                     switch (column)
                     {
                         case 1:
-                            name = Convert.ToString(ReadExcel.ReadCell(row, column));
+                            name = Convert.ToString(ReadExcel.ReadCell(rowCounter, column));
                             break;
                         case 2:
-                            price = int.Parse(ReadExcel.ReadCell(row, column));
+                            price = int.Parse(ReadExcel.ReadCell(rowCounter, column));
                             break;
                         case 3:
-                            monthlyInterestRate = decimal.Parse(ReadExcel.ReadCell(row, column));
+                            monthlyInterestRate = decimal.Parse(ReadExcel.ReadCell(rowCounter, column));
                             break;
                         case 4:
-                            items = int.Parse(ReadExcel.ReadCell(row, column));
+                            items = int.Parse(ReadExcel.ReadCell(rowCounter, column));
                             break;
                         case 5:
-                            description = Convert.ToString(ReadExcel.ReadCell(row, column));
+                            description = Convert.ToString(ReadExcel.ReadCell(rowCounter, column));
                             break;
                     }
 
@@ -67,6 +68,9 @@ namespace OOP_Project.ViewModels
                     }
                 }
             }
+
+            ReadExcel.Row = rowCounter;
+            ReadExcel.Column = 5;
         }
 
         public string Test
