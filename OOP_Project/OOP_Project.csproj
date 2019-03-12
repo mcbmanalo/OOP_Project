@@ -80,6 +80,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Transaction.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\LoanTransactionVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
