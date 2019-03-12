@@ -13,7 +13,11 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <StackPanel>
+        <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Loan Transaction" Command="{Binding Path=LoanCommand}" Margin="5"></Button>
+                <Button Content="Payment Transaction" Command="{Binding Path=PaymentCommand}" Margin="5"></Button>
+            </StackPanel>
             <Button Height="20"
                     Width="150"
                     HorizontalAlignment="Right"
@@ -29,7 +33,7 @@
             <ListBox ItemsSource="{Binding Path=TestExcelReader, UpdateSourceTrigger=PropertyChanged}"></ListBox>
         </StackPanel>
 
-        <StackPanel Grid.Column="1">
+        <StackPanel>
             <ListBox Height="200"
                      Margin="20">
             </ListBox>

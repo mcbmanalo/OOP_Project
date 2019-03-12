@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using OOP_Project.Classes;
 using ExcelDataReader;
+//using OOP_Project.Views;
+using OOP_Project.Windows;
 
 namespace OOP_Project.ViewModels
 {
@@ -24,6 +26,23 @@ namespace OOP_Project.ViewModels
         public Excel ReadExcel = new Excel();
         public Calculations Calculate = new Calculations();
         private string _test;
+        private LoanTransactionWindow _loanTransactionWindow;
+
+        public ICommand LoanCommand => new RelayCommand(LoanProc);
+
+        private void LoanProc()
+        {
+            _loanTransactionWindow = new LoanTransactionWindow();
+            _loanTransactionWindow.Owner = Application.Current.MainWindow;
+            _loanTransactionWindow.ShowDialog();
+        }
+
+        public ICommand PaymentCommand => new RelayCommand(PaymentProc);
+
+        private void PaymentProc()
+        {
+
+        }
 
         public MainVM()
         {
