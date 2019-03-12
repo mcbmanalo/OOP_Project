@@ -35,7 +35,12 @@
 
         <StackPanel>
             <ListBox Height="200"
-                     Margin="20">
+                     Margin="20"
+                     ItemsSource="{Binding Path=JewelryItemsList, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox.DataContext>
+                    <StackPanel>
+                    </StackPanel>
+                </ListBox.DataContext>
             </ListBox>
             <StackPanel>
 

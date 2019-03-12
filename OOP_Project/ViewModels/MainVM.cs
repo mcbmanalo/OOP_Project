@@ -18,9 +18,9 @@ namespace OOP_Project.ViewModels
 {
     public class MainVM : ObservableObject
     {
-        public List<Product> JewelryItemsList = new List<Product>();
-        public List<Person> CustomerList = new List<Person>();
-        public List<Person> EmployeeList = new List<Person>();
+        public List<Product> JewelryItemsList { get; } = new List<Product>();
+        public List<Person> CustomerList { get; } = new List<Person>();
+        public List<Person> EmployeeList { get; } = new List<Person>();
         public List<string> TestExcelReader { get; } = new List<string>();
         public ICommand TestCommand => new RelayCommand(Try);
         public Excel ReadExcel = new Excel();
@@ -46,21 +46,52 @@ namespace OOP_Project.ViewModels
 
         public MainVM()
         {
-            for (int row = 0; row < 5; row++)
+            GetInventoryList();
+        }
+
+        private void GetInventoryList()
+        {
+            //Test = ReadExcel.ReadCell(5, 1);
+            ReadExcel.Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Jewelry Inventory.xlsx";
+            var rowCounter = 2;
+            while (ReadExcel.ReadCell(rowCounter, 1) != null && ReadExcel.ReadCell(rowCounter, 1) != "")
             {
                 string name = "";
-                int price = 0;
+                float price = 0;
                 decimal monthlyInterestRate = 0;
                 int items = 0;
                 string description = "";
 
-                for (int column = 0; column < 4; column++)
+                for (int column = 1; column < 6; column++)
                 {
-                    
+                    switch (column)
+                    {
+                        case 1:
+                            name = Convert.ToString(ReadExcel.ReadCell(rowCounter, column));
+                            break;
+                        case 2:
+                            price = float.Parse(ReadExcel.ReadCell(rowCounter, column));
+                            break;
+                        case 3:
+                            monthlyInterestRate = decimal.Parse(ReadExcel.ReadCell(rowCounter, column));
+                            break;
+                        case 4:
+                            items = int.Parse(ReadExcel.ReadCell(rowCounter, column));
+                            break;
+                        case 5:
+                            description = Convert.ToString(ReadExcel.ReadCell(rowCounter, column));
+                            JewelryItemsList.Add(new Product(name, price, monthlyInterestRate, items, description));
+                            break;
+                    }
                 }
-            }
-        }
 
+                rowCounter++;
+            }
+
+            ReadExcel.Row = rowCounter;
+            ReadExcel.Column = 5;
+            RaisePropertyChanged(nameof(JewelryItemsList));
+        }
 
         public string Test
         {
@@ -74,7 +105,7 @@ namespace OOP_Project.ViewModels
 
         public void Try()
         {
-           Test = Convert.ToString(Calculate.GetPayroll(25000,1,1));
+           Test = Convert.ToString(Calculate.GetPayroll(25000,5,5));
         }
 
     }
