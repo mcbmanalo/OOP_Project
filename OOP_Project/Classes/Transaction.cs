@@ -22,7 +22,21 @@ namespace OOP_Project.Classes
         private DateTime _dateOfTransaction;
         private int _transactionId;
 
-
+        public Transaction(string name, string address, long contactNumber, string jewelryType, int jewelryQuality, double jewelryWeight, double discount, string otherDetails, double actualValue, double amountLoaned, DateTime dateOfTransaction, int transactionId)
+        {
+            Name = name;
+            Address = address;
+            ContactNumber = contactNumber;
+            JewelryType = jewelryType;
+            JewelryQuality = jewelryQuality;
+            JewelryWeight = jewelryWeight;
+            Discount = discount;
+            OtherDetails = otherDetails;
+            ActualValue = actualValue;
+            AmountLoaned = amountLoaned;
+            DateOfTransaction = dateOfTransaction;
+            TransactionId = transactionId;
+        }
 
         public string Name
         {
