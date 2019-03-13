@@ -36,7 +36,7 @@
 
                 <StackPanel>
                     <Label Content="Quality of the Jewelry"></Label>
-                    <ComboBox ItemsSource="{Binding Path=JewelryQualityOptions}" SelectedItem="{Binding Path=SelectedJewelryQuality, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></ComboBox>
+                    <ComboBox ItemsSource="{Binding Path=JewelryQualityOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedJewelryQuality, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></ComboBox>
                 </StackPanel>
 
                 <StackPanel>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         DataContext="{Binding Path=MainVM, Source={StaticResource Locator}}"
         Title="Jewelry Inventory" Height="450" Width="800">
-    <Grid Background="#FDF0D5">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>

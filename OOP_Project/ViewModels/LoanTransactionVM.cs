@@ -125,9 +125,21 @@ namespace OOP_Project.ViewModels
         }
 
         public string[] JewelryTypeOptions => Enum.GetNames(typeof(JewelryType));
-        public string[] JewelryQualityOptions => Enum.GetNames(typeof(JewelryQuality));
+        //public string[] JewelryQualityOptions => Enum.GetNames(typeof(JewelryQuality));
+        private string[] jewelryQualityOptions = new string[3] { "10k", "18k", "21k" };
+        //public string[] JewelryQualityOptions => typeof(JewelryQuality).GetProperties("Name");
 
         public ICommand TransactCommand => new RelayCommand(TransactProc);
+
+        public string[] JewelryQualityOptions
+        {
+            get => jewelryQualityOptions;
+            set
+            {
+                jewelryQualityOptions = value;
+                RaisePropertyChanged(nameof(JewelryQualityOptions));
+            }
+        }
 
         private void TransactProc()
         {
