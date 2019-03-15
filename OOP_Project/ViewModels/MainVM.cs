@@ -18,6 +18,16 @@ namespace OOP_Project.ViewModels
 {
     public class MainVM : ObservableObject
     {
+        public ObservableCollection<Transaction> TransactionsList
+        {
+            get => _transactionsList;
+            set
+            {
+                _transactionsList = value;
+                RaisePropertyChanged(nameof(TransactionsList));
+            }
+        }
+
         public List<Product> JewelryItemsList { get; } = new List<Product>();
         public List<Person> CustomerList { get; } = new List<Person>();
         public List<Person> EmployeeList { get; } = new List<Person>();
@@ -26,6 +36,23 @@ namespace OOP_Project.ViewModels
         public Calculations Calculate = new Calculations();
         private LoanTransactionWindow _loanTransactionWindow;
         private PaymentTransactionWindow _paymentTransactionWindow;
+        private ObservableCollection<Transaction> _transactionsList = new ObservableCollection<Transaction>();
+
+        public ICommand RefreshTransactionListCommand => new RelayCommand(RefreshTransactionListProc);
+
+        private void RefreshTransactionListProc()
+        {
+            var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
+
+            var transactionslist = uow.GetRepository<Transaction>().All();
+            TransactionsList = new ObservableCollection<Transaction>();
+            foreach (var transaction in transactionslist)
+            {
+                TransactionsList.Add(transaction);
+            }
+
+            uow.CompleteWork();
+        }
 
         public ICommand LoanCommand => new RelayCommand(LoanProc);
 
@@ -47,51 +74,7 @@ namespace OOP_Project.ViewModels
 
         public MainVM()
         {
-            GetInventoryList();
-        }
-
-        private void GetInventoryList()
-        {
-            //Test = ReadExcel.ReadCell(5, 1);
-            ReadExcel.Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Jewelry Inventory.xlsx";
-            var rowCounter = 2;
-            while (ReadExcel.ReadCell(rowCounter, 1) != null && ReadExcel.ReadCell(rowCounter, 1) != "")
-            {
-                string name = "";
-                float price = 0;
-                decimal monthlyInterestRate = 0;
-                int items = 0;
-                string description = "";
-
-                for (int column = 1; column < 6; column++)
-                {
-                    switch (column)
-                    {
-                        case 1:
-                            name = Convert.ToString(ReadExcel.ReadCell(rowCounter, column));
-                            break;
-                        case 2:
-                            price = float.Parse(ReadExcel.ReadCell(rowCounter, column));
-                            break;
-                        case 3:
-                            monthlyInterestRate = decimal.Parse(ReadExcel.ReadCell(rowCounter, column));
-                            break;
-                        case 4:
-                            items = int.Parse(ReadExcel.ReadCell(rowCounter, column));
-                            break;
-                        case 5:
-                            description = Convert.ToString(ReadExcel.ReadCell(rowCounter, column));
-                            JewelryItemsList.Add(new Product(name, price, monthlyInterestRate, items, description));
-                            break;
-                    }
-                }
-
-                rowCounter++;
-            }
-
-            ReadExcel.Row = rowCounter;
-            ReadExcel.Column = 5;
-            RaisePropertyChanged(nameof(JewelryItemsList));
+            RefreshTransactionListProc();
         }
 
     }

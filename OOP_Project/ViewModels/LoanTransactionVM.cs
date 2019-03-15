@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.CommandWpf;
+using OOP_Project.Classes;
 
 namespace OOP_Project.ViewModels
 {
@@ -130,9 +132,9 @@ namespace OOP_Project.ViewModels
         }
 
         public string[] JewelryTypeOptions => Enum.GetNames(typeof(JewelryType));
-        //public string[] JewelryQualityOptions => Enum.GetNames(typeof(JewelryQuality));
+
         private string[] jewelryQualityOptions = new string[3] { "10k", "18k", "21k" };
-        //public string[] JewelryQualityOptions => typeof(JewelryQuality).GetProperties("Name");
+
 
         public ICommand TransactCommand => new RelayCommand(TransactProc);
 
@@ -149,6 +151,19 @@ namespace OOP_Project.ViewModels
         private void TransactProc()
         {
 
+            var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
+
+            var transact = new Transaction(CustomerName, CustomerAddress, ContactNumber, SelectedJewelryType, SelectedJewelryQuality, JewelryWeight,
+                Discount, OtherDetails, ActualValueJ, AmountLoaned, DateTime.Today);
+
+            uow.GetRepository<Transaction>().Add(transact);
+
+            uow.CompleteWork();
+
+            ClearFields();
+
+            MessageBox.Show("You have successfully added a Loan Transaction.", "Loan Transaction Success",
+                MessageBoxButton.OK);
         }
 
         public enum JewelryType
@@ -159,14 +174,18 @@ namespace OOP_Project.ViewModels
             Earrings
         }
 
-        private enum JewelryQuality
+        private void ClearFields()
         {
-            [Display(Name = "10k")]
-            Ten,
-            [Display(Name = "18k")]
-            Eighteen,
-            [Display(Name = "21k")]
-            TwentyOne
+            CustomerName = "";
+            CustomerAddress = "";
+            ContactNumber = 0;
+            SelectedJewelryType = null;
+            SelectedJewelryQuality = null;
+            JewelryWeight = 0;
+            Discount = 0;
+            OtherDetails = "";
+            ActualValueJ = 0;
+            AmountLoaned = 0;
         }
 
     }

@@ -25,6 +25,8 @@ namespace OOP_Project.ViewModels
 
         #endregion
 
+        #region Properties
+
         public string CustomerName
         {
             get => _customerName;
@@ -107,6 +109,8 @@ namespace OOP_Project.ViewModels
                 RaisePropertyChanged(nameof(DateOfTransaction));
             }
         }
+
+        #endregion
 
     }
 }

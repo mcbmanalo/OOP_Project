@@ -14,6 +14,15 @@ namespace OOP_Project.Classes
         private string _address;
         private string _birthDate;
 
+        public int PersonId
+        {
+            get => _personId;
+            set
+            {
+                _personId = value;
+            }
+        }
+
         public string FirstName
         {
             get => _firstName;
@@ -41,6 +50,7 @@ namespace OOP_Project.Classes
         }
 
         public List<Product> OwnedProducts = new List<Product>();
+        private int _personId;
 
         public Person(string firstName, string middleName, string lastName, string address, string birthDate)
         {

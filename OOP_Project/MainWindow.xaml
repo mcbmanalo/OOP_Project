@@ -16,49 +16,25 @@
         <StackPanel Grid.Column="1" Margin="15">
           
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Refresh List" Command="{Binding Path=RefreshTransactionListCommand}" Margin="0,0,20,0"></Button>
                 <Button Content="Loan Transaction" Command="{Binding Path=LoanCommand}" Margin="0,0,20,0"></Button>
                 <Button Content="Payment Transaction" Command="{Binding Path=PaymentCommand}" Margin="0"></Button>
             </StackPanel>
            
         </StackPanel>
+        
 
-        <StackPanel>
-            <ListBox Height="200"
-                     Margin="20"
-                     ItemsSource="{Binding Path=JewelryItemsList, UpdateSourceTrigger=PropertyChanged}">
+        <StackPanel Grid.Column="0" Margin="15">
+            
+            <Label Content="Loan Transactions" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+            
+            <ListBox Height="300"
+                     Margin="20,10,20,20"
+                     ItemsSource="{Binding Path=MainVM.TransactionsList, Source={StaticResource Locator}}">
                 <ListBox.DataContext>
-                    <StackPanel>
-                    </StackPanel>
                 </ListBox.DataContext>
             </ListBox>
-            <StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Name: "></TextBlock>
-                    <TextBlock Text=""></TextBlock>
-                </StackPanel> 
-                
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Price: "></TextBlock>
-                    <TextBlock Text=""></TextBlock>
-                </StackPanel> 
-                
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="SRP: "></TextBlock>
-                    <TextBlock Text=""></TextBlock>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Stock Left: "></TextBlock>
-                    <TextBlock Text=""></TextBlock>
-                </StackPanel>
-
-                <StackPanel>
-                    <TextBlock Text="Description:"></TextBlock>
-                    <TextBlock></TextBlock>
-                </StackPanel>
-
-            </StackPanel>
+            
         </StackPanel>
     </Grid>
 </Window>
