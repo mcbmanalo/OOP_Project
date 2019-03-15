@@ -16,46 +16,49 @@
                 
                 <StackPanel>
                     <Label Content="Transaction Id"></Label>
-                    <TextBox Text="{Binding Path=TransactionId}" Margin="5,0,5,0"></TextBox>
+                    <TextBox Text="{Binding Path=TransactionId, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
                 </StackPanel>
 
                 <StackPanel>
                     <Label Content="Payment Amount"></Label>
-                    <TextBox Text="{Binding Path=AmountPaid}" Margin="5,0,5,0"></TextBox>
+                    <TextBox Text="{Binding Path=AmountPaid, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+
+                <StackPanel Margin="5,10,5,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                
+                    <Button Content="Check Details" Command="{Binding Path=TakeTransactionCommand}" Padding="5"></Button>
+
                 </StackPanel>
                 
-                <StackPanel>
-                    <Label Content="Customer Name"></Label>
-                    <TextBox Text="{Binding Path=CustomerName}" Margin="5,0,5,0"></TextBox>
+                <StackPanel Margin="5,10,5,0">
+                    <Label Content="Details of Transaction" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></Label>
+                   
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Customer Name: "></Label>
+                        <Label Content="{Binding Path=CustomerName}"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Customer Address: "></Label>
+                        <Label Content="{Binding Path=CustomerAddress}"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Contact Number: "></Label>
+                        <Label Content="{Binding Path=ContactNumber}"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Amount Loaned: "></Label>
+                        <Label Content="{Binding Path=AmountLoaned}"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Accumulated Amount: "></Label>
+                        <Label Content="{Binding Path=AccumulatedAmount}"></Label>
+                    </StackPanel>
+
                 </StackPanel>
-                
-                <StackPanel>
-                    <Label Content="Customer Address"></Label>
-                    <TextBox Text="{Binding Path=CustomerAddress}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-                
-                <StackPanel>
-                    <Label Content="Contact Number"></Label>
-                    <TextBox Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-                
-                <StackPanel>
-                    <Label Content="Amount Loaned"></Label>
-                    <TextBox Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-                
-                <StackPanel>
-                    <Label Content="Balance"></Label>
-                    <TextBox Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-                
-                <StackPanel>
-                    <Label Content="Date Of Transaction"></Label>
-                    <TextBox Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-                
-              
-                
             </StackPanel>
             
         </ScrollViewer>

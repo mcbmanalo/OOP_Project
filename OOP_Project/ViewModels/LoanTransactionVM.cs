@@ -198,6 +198,7 @@ namespace OOP_Project.ViewModels
             OtherDetails = "";
             ActualValueJ = 0;
             AmountLoaned = 0;
+            InterestRate = 0;
         }
 
     }

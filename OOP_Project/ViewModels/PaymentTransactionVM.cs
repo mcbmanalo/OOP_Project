@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using Microsoft.EntityFrameworkCore;
+using OOP_Project.Classes;
 
 namespace OOP_Project.ViewModels
 {
@@ -13,19 +16,37 @@ namespace OOP_Project.ViewModels
 
         #region Fields
 
+        private int _transactionId;
+        private double _amountPaid;
         private string _customerName;
         private string _customerAddress;
         private long _contactNumber;
-        private int _transactionId;
         private double _amountLoaned;
         private double _accumulatedAmount;
-        private double _amountPaid;
-        private double _balance;
-        private DateTime _dateOfTransaction;
 
         #endregion
 
         #region Properties
+
+        public int TransactionId
+        {
+            get => _transactionId;
+            set
+            {
+                _transactionId = value;
+                RaisePropertyChanged(nameof(TransactionId));
+            }
+        }
+       
+        public double AmountPaid
+        {
+            get => _amountPaid;
+            set
+            {
+                _amountPaid = value;
+                RaisePropertyChanged(nameof(AmountPaid));
+            }
+        }
 
         public string CustomerName
         {
@@ -46,6 +67,7 @@ namespace OOP_Project.ViewModels
                 RaisePropertyChanged(nameof(CustomerAddress));
             }
         }
+
         public long ContactNumber
         {
             get => _contactNumber;
@@ -55,15 +77,7 @@ namespace OOP_Project.ViewModels
                 RaisePropertyChanged(nameof(ContactNumber));
             }
         }
-        public int TransactionId
-        {
-            get => _transactionId;
-            set
-            {
-                _transactionId = value;
-                RaisePropertyChanged(nameof(TransactionId));
-            }
-        }
+
         public double AmountLoaned
         {
             get => _amountLoaned;
@@ -73,6 +87,7 @@ namespace OOP_Project.ViewModels
                 RaisePropertyChanged(nameof(AmountLoaned));
             }
         }
+
         public double AccumulatedAmount
         {
             get => _accumulatedAmount;
@@ -82,35 +97,76 @@ namespace OOP_Project.ViewModels
                 RaisePropertyChanged(nameof(AccumulatedAmount));
             }
         }
-        public double AmountPaid
-        {
-            get => _amountPaid;
-            set
-            {
-                _amountPaid = value;
-                RaisePropertyChanged(nameof(AmountPaid));
-            }
-        }
-        public double Balance
-        {
-            get => _balance;
-            set
-            {
-                _balance = value;
-                RaisePropertyChanged(nameof(Balance));
-            }
-        }
-        public DateTime DateOfTransaction
-        {
-            get => _dateOfTransaction;
-            set
-            {
-                _dateOfTransaction = value;
-                RaisePropertyChanged(nameof(DateOfTransaction));
-            }
-        }
+
+        public Transaction Transaction { get; set; }
 
         #endregion
 
+        public ICommand PayLoanCommand => new RelayCommand(PayLoanProc);
+
+        private void PayLoanProc()
+        {
+
+
+        }
+
+        public ICommand TakeTransactionCommand => new RelayCommand(TakeTransactionProc);
+
+        private void TakeTransactionProc()
+        {
+            var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
+            Transaction = uow.GetRepository<Transaction>().All()
+                .FirstOrDefault(c => c.TransactionId == TransactionId);
+
+            uow.CompleteWork();
+            InputValues();
+        }
+
+        private void InputValues()
+        {
+            CustomerName = Transaction.Name;
+            CustomerAddress = Transaction.Address;
+            ContactNumber = Transaction.ContactNumber;
+            AmountLoaned = Transaction.AmountLoaned;
+            AccumulatedAmount = CalculateAccumulatedAmount();
+        }
+
+        private double CalculateAccumulatedAmount()
+        {
+            if (Transaction.PaymentTransactionsList == null)
+            {
+                var past = Transaction.DateOfTransaction;
+                var now = DateTime.Today;
+
+                var age = 365 * (now.Year - past.Year) + 30 * (now.Month - past.Month) + (now.Day - past.Day);
+
+                return Transaction.AmountLoaned + GetInterest(age);
+            }
+
+            else
+            {
+                var past = DateTime.Parse("January 0, 0000");
+                var now = DateTime.Today;
+                PaymentTransactions paymentTransaction = null;
+
+                foreach (var paymentTransactions in Transaction.PaymentTransactionsList)
+                {
+                    if (paymentTransactions.DateOfTransaction >= past)
+                    {
+                        past = paymentTransactions.DateOfTransaction;
+                        paymentTransaction = paymentTransactions;
+                    }
+                }
+
+                double age = 365 * (now.Year - past.Year) + 30 * (now.Month - past.Month) + (now.Day - past.Day);
+
+                return paymentTransaction.Balance + GetInterest(age);
+            }
+        }
+
+        private double GetInterest(double age)
+        {
+            return Transaction.AmountLoaned * Transaction.InterestRate * (age / 30);
+        }
     }
 }

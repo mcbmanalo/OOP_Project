@@ -25,6 +25,7 @@ namespace OOP_Project.Classes
         public double Balance { get; set; }
         public double InterestRate { get; set; }
         public DateTime DateOfTransaction { get; set; }
+
         public ICollection<PaymentTransactions> PaymentTransactionsList { get; set; }
 
         public Transaction()
