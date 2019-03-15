@@ -22,11 +22,10 @@ namespace OOP_Project.ViewModels
         public List<Person> CustomerList { get; } = new List<Person>();
         public List<Person> EmployeeList { get; } = new List<Person>();
         public List<string> TestExcelReader { get; } = new List<string>();
-        public ICommand TestCommand => new RelayCommand(Try);
         public Excel ReadExcel = new Excel();
         public Calculations Calculate = new Calculations();
-        private string _test;
         private LoanTransactionWindow _loanTransactionWindow;
+        private PaymentTransactionWindow _paymentTransactionWindow;
 
         public ICommand LoanCommand => new RelayCommand(LoanProc);
 
@@ -41,7 +40,9 @@ namespace OOP_Project.ViewModels
 
         private void PaymentProc()
         {
-
+            _paymentTransactionWindow = new PaymentTransactionWindow();
+            _paymentTransactionWindow.Owner = Application.Current.MainWindow;
+            _paymentTransactionWindow.ShowDialog();
         }
 
         public MainVM()
@@ -91,21 +92,6 @@ namespace OOP_Project.ViewModels
             ReadExcel.Row = rowCounter;
             ReadExcel.Column = 5;
             RaisePropertyChanged(nameof(JewelryItemsList));
-        }
-
-        public string Test
-        {
-            get => _test;
-            set
-            {
-                _test = value;
-                RaisePropertyChanged(nameof(Test));
-            }
-        }
-
-        public void Try()
-        {
-           Test = Convert.ToString(Calculate.GetPayroll(25000,5,5));
         }
 
     }

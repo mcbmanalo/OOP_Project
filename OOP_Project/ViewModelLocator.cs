@@ -12,9 +12,11 @@ namespace OOP_Project
         public ViewModelLocator()
         {
             MainVM = new MainVM();
-             LoanTransactionVM = new LoanTransactionVM();
+            LoanTransactionVM = new LoanTransactionVM();
+            PaymentTransactionVM = new PaymentTransactionVM();
         }
         public MainVM MainVM { get; }
         public LoanTransactionVM LoanTransactionVM { get; }
+        public PaymentTransactionVM PaymentTransactionVM { get; }
     }
 }

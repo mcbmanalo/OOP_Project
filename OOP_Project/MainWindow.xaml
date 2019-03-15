@@ -13,24 +13,13 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1">
+        <StackPanel Grid.Column="1" Margin="15">
+          
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Loan Transaction" Command="{Binding Path=LoanCommand}" Margin="5"></Button>
-                <Button Content="Payment Transaction" Command="{Binding Path=PaymentCommand}" Margin="5"></Button>
+                <Button Content="Loan Transaction" Command="{Binding Path=LoanCommand}" Margin="0,0,20,0"></Button>
+                <Button Content="Payment Transaction" Command="{Binding Path=PaymentCommand}" Margin="0"></Button>
             </StackPanel>
-            <Button Height="20"
-                    Width="150"
-                    HorizontalAlignment="Right"
-                    Margin="10"
-                    Command ="{Binding Path=TestCommand}"
-                    Content="Transaction"></Button>     
-            <Button Height="20"
-                    Width="150"
-                    HorizontalAlignment="Right"
-                    Margin="10"
-                    Content="Add New Jewelry"></Button>
-            <TextBox Text="{Binding Path=Test, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <ListBox ItemsSource="{Binding Path=TestExcelReader, UpdateSourceTrigger=PropertyChanged}"></ListBox>
+           
         </StackPanel>
 
         <StackPanel>

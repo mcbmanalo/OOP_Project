@@ -1,0 +1,63 @@
+﻿<Window x:Class="OOP_Project.Windows.PaymentTransactionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOP_Project.Windows"
+        mc:Ignorable="d"
+        DataContext="{Binding Path=PaymentTransactionVM, Source={StaticResource Locator}}"
+        Title="PaymentTransactionWindow" Height="450" Width="350">
+    <Grid>
+        <ScrollViewer>
+
+            <StackPanel Margin="15">
+
+                <Label Content="Loan Payment" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></Label>
+                
+                <StackPanel>
+                    <Label Content="Transaction Id"></Label>
+                    <TextBox Text="{Binding Path=TransactionId}" Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="Payment Amount"></Label>
+                    <TextBox Text="{Binding Path=AmountPaid}" Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label Content="Customer Name"></Label>
+                    <TextBox Text="{Binding Path=CustomerName}" Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label Content="Customer Address"></Label>
+                    <TextBox Text="{Binding Path=CustomerAddress}" Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label Content="Contact Number"></Label>
+                    <TextBox Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label Content="Amount Loaned"></Label>
+                    <TextBox Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label Content="Balance"></Label>
+                    <TextBox Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Label Content="Date Of Transaction"></Label>
+                    <TextBox Margin="5,0,5,0"></TextBox>
+                </StackPanel>
+                
+              
+                
+            </StackPanel>
+            
+        </ScrollViewer>
+    </Grid>
+</Window>

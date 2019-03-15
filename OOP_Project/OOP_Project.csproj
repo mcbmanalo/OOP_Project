@@ -84,8 +84,12 @@
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\LoanTransactionVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\PaymentTransactionVM.cs" />
     <Compile Include="Windows\LoanTransactionWindow.xaml.cs">
       <DependentUpon>LoanTransactionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PaymentTransactionWindow.xaml.cs">
+      <DependentUpon>PaymentTransactionWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -104,6 +108,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\LoanTransactionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PaymentTransactionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

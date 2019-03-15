@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Carmela Manalo\Source\Repos\OOP_Project\OOP_Project\App.xaml
-22066027747
+32109536733
 
-18-1821880123
+20-1019909476
 79923857962
-MainWindow.xaml;Windows\LoanTransactionWindow.xaml;
+MainWindow.xaml;Windows\LoanTransactionWindow.xaml;Windows\PaymentTransactionWindow.xaml;
 
 True
 

@@ -19,6 +19,7 @@ namespace OOP_Project.Classes
         private string _otherDetails;
         private double _actualValue;
         private double _amountLoaned;
+        private double _balance;
         private DateTime _dateOfTransaction;
         private int _transactionId;
 
@@ -36,6 +37,7 @@ namespace OOP_Project.Classes
             AmountLoaned = amountLoaned;
             DateOfTransaction = dateOfTransaction;
             TransactionId = transactionId;
+            Balance = AmountLoaned;
         }
 
         public string Name
@@ -135,6 +137,16 @@ namespace OOP_Project.Classes
             {
                 _amountLoaned = value;
                 RaisePropertyChanged(nameof(AmountLoaned));
+            }
+        }
+
+        public double Balance
+        {
+            get => _balance;
+            set
+            {
+                _balance = value;
+                RaisePropertyChanged(nameof(Balance));
             }
         }
 

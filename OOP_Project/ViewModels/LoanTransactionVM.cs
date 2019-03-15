@@ -13,6 +13,9 @@ namespace OOP_Project.ViewModels
 {
     public class LoanTransactionVM : ObservableObject
     {
+
+        #region Fields
+
         private string _customerName;
         private string _customerAddress;
         private long _contactNumber;
@@ -23,6 +26,8 @@ namespace OOP_Project.ViewModels
         private string _otherDetails;
         private double _actualValueJ;
         private double _amountLoaned;
+
+        #endregion
 
         public string CustomerName
         {
