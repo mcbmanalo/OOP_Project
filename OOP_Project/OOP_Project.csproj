@@ -165,9 +165,9 @@
     <Compile Include="Classes\OOProjectContext.cs" />
     <Compile Include="Classes\PaymentTransactions.cs" />
     <Compile Include="Classes\Transaction.cs" />
-    <Compile Include="Migrations\20190315151526_v1.cs" />
-    <Compile Include="Migrations\20190315151526_v1.designer.cs">
-      <DependentUpon>20190315151526_v1.cs</DependentUpon>
+    <Compile Include="Migrations\20190315164706_v1.cs" />
+    <Compile Include="Migrations\20190315164706_v1.designer.cs">
+      <DependentUpon>20190315164706_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\OOProjectContextModelSnapshot.cs" />
     <Compile Include="Repository\EfRepository.cs" />

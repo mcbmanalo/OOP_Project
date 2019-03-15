@@ -10,7 +10,7 @@ using OOP_Project.Classes;
 namespace OOP_Project.Migrations
 {
     [DbContext(typeof(OOProjectContext))]
-    [Migration("20190315151526_v1")]
+    [Migration("20190315164706_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,6 +71,8 @@ namespace OOP_Project.Migrations
                     b.Property<DateTime>("DateOfTransaction");
 
                     b.Property<double>("Discount");
+
+                    b.Property<double>("InterestRate");
 
                     b.Property<string>("JewelryQuality");
 

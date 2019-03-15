@@ -28,6 +28,7 @@ namespace OOP_Project.ViewModels
         private string _otherDetails;
         private double _actualValueJ;
         private double _amountLoaned;
+        private double _interestRate;
 
         #endregion
 
@@ -131,6 +132,16 @@ namespace OOP_Project.ViewModels
             }
         }
 
+        public double InterestRate
+        {
+            get => _interestRate;
+            set
+            {
+                _interestRate = value;
+                RaisePropertyChanged(nameof(InterestRate));
+            }
+        }
+
         public string[] JewelryTypeOptions => Enum.GetNames(typeof(JewelryType));
 
         private string[] jewelryQualityOptions = new string[3] { "10k", "18k", "21k" };
@@ -154,7 +165,7 @@ namespace OOP_Project.ViewModels
             var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
 
             var transact = new Transaction(CustomerName, CustomerAddress, ContactNumber, SelectedJewelryType, SelectedJewelryQuality, JewelryWeight,
-                Discount, OtherDetails, ActualValueJ, AmountLoaned, DateTime.Today);
+                Discount, OtherDetails, ActualValueJ, AmountLoaned, DateTime.Today, InterestRate);
 
             uow.GetRepository<Transaction>().Add(transact);
 
@@ -164,6 +175,7 @@ namespace OOP_Project.ViewModels
 
             MessageBox.Show("You have successfully added a Loan Transaction.", "Loan Transaction Success",
                 MessageBoxButton.OK);
+
         }
 
         public enum JewelryType

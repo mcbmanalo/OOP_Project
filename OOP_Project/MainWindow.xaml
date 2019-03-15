@@ -30,9 +30,14 @@
             
             <ListBox Height="300"
                      Margin="20,10,20,20"
-                     ItemsSource="{Binding Path=MainVM.TransactionsList, Source={StaticResource Locator}}">
-                <ListBox.DataContext>
-                </ListBox.DataContext>
+                     ItemsSource="{Binding Path=TransactionsList, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Label Content="{Binding Path=TransactionId}"></Label>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
             
         </StackPanel>

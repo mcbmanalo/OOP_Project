@@ -25,6 +25,7 @@ namespace OOP_Project.Migrations
                     ActualValue = table.Column<double>(nullable: false),
                     AmountLoaned = table.Column<double>(nullable: false),
                     Balance = table.Column<double>(nullable: false),
+                    InterestRate = table.Column<double>(nullable: false),
                     DateOfTransaction = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

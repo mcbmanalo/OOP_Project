@@ -23,6 +23,7 @@ namespace OOP_Project.Classes
         public double ActualValue { get; set; }
         public double AmountLoaned { get; set; }
         public double Balance { get; set; }
+        public double InterestRate { get; set; }
         public DateTime DateOfTransaction { get; set; }
         public ICollection<PaymentTransactions> PaymentTransactionsList { get; set; }
 
@@ -31,7 +32,8 @@ namespace OOP_Project.Classes
             
         }
 
-        public Transaction(string name, string address, long contactNumber, string jewelryType, string jewelryQuality, double jewelryWeight, double discount, string otherDetails, double actualValue, double amountLoaned, DateTime dateOfTransaction)
+        public Transaction(string name, string address, long contactNumber, string jewelryType, string jewelryQuality, double jewelryWeight, double discount,
+            string otherDetails, double actualValue, double amountLoaned, DateTime dateOfTransaction, double interestRate)
         {
             Name = name;
             Address = address;
@@ -45,6 +47,7 @@ namespace OOP_Project.Classes
             AmountLoaned = amountLoaned;
             DateOfTransaction = dateOfTransaction;
             Balance = AmountLoaned;
+            InterestRate = interestRate/100;
         }
 
 

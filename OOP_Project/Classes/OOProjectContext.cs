@@ -56,6 +56,8 @@ namespace OOP_Project.Classes
 
                 e.Property(c => c.OtherDetails);
 
+                e.Property(c => c.InterestRate);
+
             });
 
             modelBuilder.Entity<PaymentTransactions>(e =>

@@ -70,6 +70,8 @@ namespace OOP_Project.Migrations
 
                     b.Property<double>("Discount");
 
+                    b.Property<double>("InterestRate");
+
                     b.Property<string>("JewelryQuality");
 
                     b.Property<string>("JewelryType");
