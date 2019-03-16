@@ -32,10 +32,28 @@ namespace OOP_Project.ViewModels
         public List<Person> CustomerList { get; } = new List<Person>();
         public List<Person> EmployeeList { get; } = new List<Person>();
         public Calculations Calculate = new Calculations();
+        private DateTime DateTime { get; set; }
         private LoanTransactionWindow _loanTransactionWindow;
         private PaymentTransactionWindow _paymentTransactionWindow;
+        private CheckPaymentsWindow _checkPaymentsWindow;
         private ObservableCollection<Transaction> _transactionsList = new ObservableCollection<Transaction>();
         private Transaction _selectedTransaction;
+        private ObservableCollection<PaymentTransactions> _paymentTransactions = new ObservableCollection<PaymentTransactions>();
+
+        public MainVM()
+        {
+            RefreshTransactionListProc();
+        }
+
+        public ObservableCollection<PaymentTransactions> PaymentTransactions
+        {
+            get => _paymentTransactions;
+            set
+            {
+                _paymentTransactions = value;
+                RaisePropertyChanged(nameof(PaymentTransactions));
+            }
+        }
 
         public Transaction SelectedTransaction
         {
@@ -85,13 +103,40 @@ namespace OOP_Project.ViewModels
 
         private void CheckPaymentsProc()
         {
-
+            GetAllPaymentTransactions();
+            _checkPaymentsWindow = new CheckPaymentsWindow();
+            _checkPaymentsWindow.Owner = Application.Current.MainWindow;
+            _paymentTransactionWindow.ShowDialog();
         }
 
-        public MainVM()
+        private void GetAllPaymentTransactions()
         {
-            RefreshTransactionListProc();
+            PaymentTransactions = new ObservableCollection<PaymentTransactions>();
+            var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
+
+            var paymentTransactions = new ObservableCollection<PaymentTransactions>();
+
+            foreach (var transaction in TransactionsList)
+            {
+
+                var paymentTransactionsOfTransaction = uow.GetRepository<PaymentTransactions>().All()
+                    .Where(c => c.TransactionId == transaction.TransactionId)
+                    .ToList()
+                    .OrderBy(c => c.DateOfTransaction);
+
+                foreach (var paymentsOfTransactions in paymentTransactionsOfTransaction)
+                {
+                    paymentTransactions.Add(paymentsOfTransactions);
+                }
+
+            }
+
+            PaymentTransactions = paymentTransactions;
+
+            uow.CompleteWork();
         }
+
+
 
     }
 }
