@@ -106,7 +106,7 @@ namespace OOP_Project.ViewModels
             GetAllPaymentTransactions();
             _checkPaymentsWindow = new CheckPaymentsWindow();
             _checkPaymentsWindow.Owner = Application.Current.MainWindow;
-            _paymentTransactionWindow.ShowDialog();
+            _checkPaymentsWindow.ShowDialog();
         }
 
         private void GetAllPaymentTransactions()
