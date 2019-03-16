@@ -25,7 +25,8 @@
                 </StackPanel>
 
                 <StackPanel Margin="5,10,5,0" Orientation="Horizontal" HorizontalAlignment="Right">
-                
+
+                    <Button Content="Pay Loan" Command="{Binding Path=PayLoanCommand}" Padding="5" Margin="0,0,10,0"></Button>
                     <Button Content="Check Details" Command="{Binding Path=TakeTransactionCommand}" Padding="5"></Button>
 
                 </StackPanel>

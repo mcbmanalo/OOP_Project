@@ -41,7 +41,7 @@ namespace OOP_Project.Classes
             ContactNumber = contactNumber;
             JewelryType = jewelryType;
             JewelryQuality = jewelryQuality;
-            JewelryWeight = jewelryWeight;
+            JewelryWeight = jewelryWeight-discount;
             Discount = discount;
             OtherDetails = otherDetails;
             ActualValue = actualValue;
@@ -49,6 +49,7 @@ namespace OOP_Project.Classes
             DateOfTransaction = dateOfTransaction;
             Balance = AmountLoaned;
             InterestRate = interestRate/100;
+            PaymentTransactionsList = new HashSet<PaymentTransactions>();
         }
 
 

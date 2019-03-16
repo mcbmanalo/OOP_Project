@@ -234,7 +234,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="References\Jewelry Inventory.xlsx" />
-    <None Include="References\Tax Table.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -31,8 +31,6 @@ namespace OOP_Project.ViewModels
         public List<Product> JewelryItemsList { get; } = new List<Product>();
         public List<Person> CustomerList { get; } = new List<Person>();
         public List<Person> EmployeeList { get; } = new List<Person>();
-        public List<string> TestExcelReader { get; } = new List<string>();
-        public Excel ReadExcel = new Excel();
         public Calculations Calculate = new Calculations();
         private LoanTransactionWindow _loanTransactionWindow;
         private PaymentTransactionWindow _paymentTransactionWindow;

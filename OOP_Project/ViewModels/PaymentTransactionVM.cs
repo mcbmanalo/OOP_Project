@@ -106,7 +106,28 @@ namespace OOP_Project.ViewModels
 
         private void PayLoanProc()
         {
+            if (Transaction == null)
+            {
+                TakeTransactionProc();
+            }
 
+            var paymentTransactionToday = new PaymentTransactions( TransactionId, CustomerName, CustomerAddress, ContactNumber, AmountLoaned, AccumulatedAmount,
+                AmountPaid, AccumulatedAmount-AmountPaid, DateTime.Today );
+
+            var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
+
+            uow.GetRepository<PaymentTransactions>().Add(paymentTransactionToday);
+
+            if (Transaction.PaymentTransactionsList == null)
+            {
+                Transaction.PaymentTransactionsList = new List<PaymentTransactions>();
+            }
+
+            Transaction.PaymentTransactionsList.Add(paymentTransactionToday);
+
+            uow.GetRepository<Transaction>().Update(Transaction);
+
+            uow.CompleteWork();
 
         }
 
@@ -115,8 +136,10 @@ namespace OOP_Project.ViewModels
         private void TakeTransactionProc()
         {
             var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
-            Transaction = uow.GetRepository<Transaction>().All()
-                .FirstOrDefault(c => c.TransactionId == TransactionId);
+            Transaction.PaymentTransactionsList = uow.GetRepository<PaymentTransactions>().All()
+                .Where(c => c.TransactionId == TransactionId)
+                .Include(navigationPropertyPath: c => c.Transaction)
+                .ToList();
 
             uow.CompleteWork();
             InputValues();
