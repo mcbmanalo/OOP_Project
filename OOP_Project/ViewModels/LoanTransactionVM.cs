@@ -146,6 +146,18 @@ namespace OOP_Project.ViewModels
 
         private string[] jewelryQualityOptions = new string[3] { "10k", "18k", "21k" };
 
+        private MainVM MainVM { get; set; } = new MainVM();
+
+
+        public LoanTransactionVM()
+        {
+            
+        }
+
+        public LoanTransactionVM(MainVM main)
+        {
+            MainVM = main;
+        }
 
         public ICommand TransactCommand => new RelayCommand(TransactProc);
 
@@ -171,10 +183,13 @@ namespace OOP_Project.ViewModels
 
             uow.CompleteWork();
 
+            MainVM._loanTransactionWindow.Close();
+
             ClearFields();
 
             MessageBox.Show("You have successfully added a Loan Transaction.", "Loan Transaction Success",
                 MessageBoxButton.OK);
+
 
         }
 

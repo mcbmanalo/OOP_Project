@@ -104,7 +104,19 @@ namespace OOP_Project.ViewModels
 
         public ObservableCollection<PaymentTransactions> PaymentTransactions { get; set; } = new ObservableCollection<PaymentTransactions>();
 
+        private MainVM MainVM { get; set; } = new MainVM();
+
         #endregion
+
+        public PaymentTransactionVM()
+        {
+            
+        }
+
+        public PaymentTransactionVM(MainVM main)
+        {
+            MainVM = main;
+        }
 
         public ICommand PayLoanCommand => new RelayCommand(PayLoanProc);
 
@@ -134,9 +146,14 @@ namespace OOP_Project.ViewModels
                 uow.GetRepository<Transaction>().Update(Transaction);
 
                 uow.CompleteWork();
+
+                MainVM._paymentTransactionWindow.Close();
+
                 ClearFields();
+
                 MessageBox.Show("Payment has been deducted from the previous balance.", "Payment Successful",
                     MessageBoxButton.OK);
+
             }
 
         }
@@ -214,6 +231,12 @@ namespace OOP_Project.ViewModels
         {
             TransactionId = 0;
             AmountPaid = 0;
+            Transaction = new Transaction();
+            CustomerName = "";
+            CustomerAddress = "";
+            ContactNumber = 0;
+            AccumulatedAmount = 0;
+            AmountLoaned = 0;
         }
     }
 }

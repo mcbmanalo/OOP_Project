@@ -33,8 +33,8 @@ namespace OOP_Project.ViewModels
         public List<Person> EmployeeList { get; } = new List<Person>();
         public Calculations Calculate = new Calculations();
         private DateTime DateTime { get; set; }
-        private LoanTransactionWindow _loanTransactionWindow;
-        private PaymentTransactionWindow _paymentTransactionWindow;
+        public LoanTransactionWindow _loanTransactionWindow;
+        public PaymentTransactionWindow _paymentTransactionWindow;
         private CheckPaymentsWindow _checkPaymentsWindow;
         private ObservableCollection<Transaction> _transactionsList = new ObservableCollection<Transaction>();
         private Transaction _selectedTransaction;
@@ -87,6 +87,7 @@ namespace OOP_Project.ViewModels
         {
             _loanTransactionWindow = new LoanTransactionWindow();
             _loanTransactionWindow.Owner = Application.Current.MainWindow;
+            _loanTransactionWindow.DataContext = new LoanTransactionVM(this);
             _loanTransactionWindow.ShowDialog();
         }
 
@@ -96,6 +97,7 @@ namespace OOP_Project.ViewModels
         {
             _paymentTransactionWindow = new PaymentTransactionWindow();
             _paymentTransactionWindow.Owner = Application.Current.MainWindow;
+            _paymentTransactionWindow.DataContext = new PaymentTransactionVM(this);
             _paymentTransactionWindow.ShowDialog();
         }
 
