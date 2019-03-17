@@ -13,7 +13,8 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Label Content="Payment Transactions" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+        <Rectangle Fill="#4343db" Height="55" Grid.ColumnSpan="2" VerticalAlignment="Top"></Rectangle>
+        <Label Content="Payment Transactions" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"></Label>
 
         <ScrollViewer Margin="20" Grid.Row="1">
 
@@ -21,17 +22,17 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-
                                 <StackPanel Orientation="Horizontal">
-                                    <Label Content="Transaction Id: "></Label>
-                                    <Label Content="{Binding Path=TransactionId}"></Label>
-                                </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Transaction Id: "></Label>
+                                        <Label Content="{Binding Path=TransactionId}"></Label>
+                                    </StackPanel>
 
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="Date Of Transaction: "></Label>
-                                    <Label Content="{Binding Path=DateOfTransaction}"></Label>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Date Of Transaction: "></Label>
+                                        <Label Content="{Binding Path=DateOfTransaction}"></Label>
+                                    </StackPanel>
                                 </StackPanel>
-
 
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Amount Loaned: "></Label>

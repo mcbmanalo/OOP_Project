@@ -6,71 +6,76 @@
         xmlns:local="clr-namespace:OOP_Project.Windows"
         mc:Ignorable="d"
         DataContext="{Binding Path=LoanTransactionVM, Source={StaticResource Locator}}"
-        Title="LoanTransactionWindow" Height="450" Width="350">
+        Title="LoanTransactionWindow" MinHeight="450" MinWidth="350" MaxWidth="400" WindowStartupLocation="CenterScreen">
     <Grid>
+
+
         <ScrollViewer>
 
-            <StackPanel Margin="15">
-                
-                <Label Content="New Loan" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></Label>
+            <StackPanel>
+                <Grid>
+                    <Rectangle Fill="#4343db" Height="55" VerticalAlignment="Top"></Rectangle>
+                    <Label Content="New Loan" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="20" FontWeight="Bold"></Label>
+                </Grid>
 
-                <StackPanel>
-                    <Label Content="Customer Name"></Label>
-                    <TextBox Text="{Binding Path=CustomerName, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                <StackPanel Margin="15">
+                    <StackPanel Margin="0,5,0,0">
+                        <Label Content="Customer Name"></Label>
+                        <TextBox Text="{Binding Path=CustomerName, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Customer Address"></Label>
+                        <TextBox Text="{Binding Path=CustomerAddress, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Customer Contact Number"></Label>
+                        <TextBox Text="{Binding Path=ContactNumber, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Type of Jewelry"></Label>
+                        <ComboBox ItemsSource="{Binding Path=JewelryTypeOptions}" SelectedItem="{Binding Path=SelectedJewelryType, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></ComboBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Quality of the Jewelry"></Label>
+                        <ComboBox ItemsSource="{Binding Path=JewelryQualityOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedJewelryQuality, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></ComboBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Weight of the Jewelry"></Label>
+                        <TextBox Text="{Binding Path=JewelryWeight, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Discount"></Label>
+                        <TextBox Text="{Binding Path=Discount, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Interest Rate"></Label>
+                        <TextBox Text="{Binding Path=InterestRate, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Other Details"></Label>
+                        <TextBox Text="{Binding Path=OtherDetails, UpdateSourceTrigger=PropertyChanged}" Height="50" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Actual Value of the Jewelry"></Label>
+                        <TextBox Text="{Binding Path=ActualValueJ, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Label Content="Amount Loaned by the Customer"></Label>
+                        <TextBox Text="{Binding Path=AmountLoaned, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                    </StackPanel>
+
+                    <Button Content="Transact" Command="{Binding Path=TransactCommand}" BorderThickness="0" Background="#4343db" Foreground="White" FontSize="14" FontWeight="Bold" Padding="8" Margin="5,15,5,0"></Button>
                 </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Customer Address"></Label>
-                    <TextBox Text="{Binding Path=CustomerAddress, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Customer Contact Number"></Label>
-                    <TextBox Text="{Binding Path=ContactNumber, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Type of Jewelry"></Label>
-                    <ComboBox ItemsSource="{Binding Path=JewelryTypeOptions}" SelectedItem="{Binding Path=SelectedJewelryType, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></ComboBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Quality of the Jewelry"></Label>
-                    <ComboBox ItemsSource="{Binding Path=JewelryQualityOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=SelectedJewelryQuality, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></ComboBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Weight of the Jewelry"></Label>
-                    <TextBox Text="{Binding Path=JewelryWeight, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Discount"></Label>
-                    <TextBox Text="{Binding Path=Discount, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Interest Rate"></Label>
-                    <TextBox Text="{Binding Path=InterestRate, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Other Details"></Label>
-                    <TextBox Text="{Binding Path=OtherDetails, UpdateSourceTrigger=PropertyChanged}" Height="50" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Actual Value of the Jewelry"></Label>
-                    <TextBox Text="{Binding Path=ActualValueJ, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-
-                <StackPanel>
-                    <Label Content="Amount Loaned by the Customer"></Label>
-                    <TextBox Text="{Binding Path=AmountLoaned, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
-
-                <Button Content="Transact" Command="{Binding Path=TransactCommand}" Margin="5,15,5,0"></Button>
-
             </StackPanel>
 
         </ScrollViewer>

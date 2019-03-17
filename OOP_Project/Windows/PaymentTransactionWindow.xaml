@@ -6,62 +6,67 @@
         xmlns:local="clr-namespace:OOP_Project.Windows"
         mc:Ignorable="d"
         DataContext="{Binding Path=PaymentTransactionVM, Source={StaticResource Locator}}"
-        Title="PaymentTransactionWindow" Height="450" Width="350">
+        Title="PaymentTransactionWindow" MinHeight="450" MinWidth="350" MaxHeight="450" MaxWidth="400" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ScrollViewer>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
 
-            <StackPanel Margin="15">
+        <Rectangle Fill="#4343db" Height="55" VerticalAlignment="Top"></Rectangle>
+        <Rectangle Fill="#4343db" Height="55" VerticalAlignment="Top" Grid.Row="1"></Rectangle>
+        <StackPanel Margin="15">
 
-                <Label Content="Loan Payment" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></Label>
+            <Label Content="Loan Payment" Foreground="White" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></Label>
                 
-                <StackPanel>
-                    <Label Content="Transaction Id"></Label>
-                    <TextBox Text="{Binding Path=TransactionId, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
+            <StackPanel Margin="0,5,0,0">
+                <Label Content="Transaction Id"></Label>
+                <TextBox Text="{Binding Path=TransactionId, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+            </StackPanel>
 
-                <StackPanel>
-                    <Label Content="Payment Amount"></Label>
-                    <TextBox Text="{Binding Path=AmountPaid, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
-                </StackPanel>
+            <StackPanel>
+                <Label Content="Payment Amount"></Label>
+                <TextBox Text="{Binding Path=AmountPaid, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+            </StackPanel>
 
-                <StackPanel Margin="5,10,5,0" Orientation="Horizontal" HorizontalAlignment="Right">
-
-                    <Button Content="Pay Loan" Command="{Binding Path=PayLoanCommand}" Padding="5" Margin="0,0,10,0"></Button>
-                    <Button Content="Check Details" Command="{Binding Path=TakeTransactionCommand}" Padding="5"></Button>
-
-                </StackPanel>
+            <StackPanel Margin="5,10,5,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Pay Loan" Command="{Binding Path=PayLoanCommand}"  BorderThickness="0" Background="#4343db" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0,0,20,0" Padding="8"></Button>
+                <Button Content="Check Details" Command="{Binding Path=TakeTransactionCommand}"  BorderThickness="0" Background="#4343db" Foreground="White" FontSize="14" FontWeight="Bold" Padding="8"></Button>
+            </StackPanel>
                 
-                <StackPanel Margin="5,10,5,0">
-                    <Label Content="Details of Transaction" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></Label>
-                   
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Customer Name: "></Label>
-                        <Label Content="{Binding Path=CustomerName}"></Label>
-                    </StackPanel>
+        </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Customer Address: "></Label>
-                        <Label Content="{Binding Path=CustomerAddress}"></Label>
-                    </StackPanel>
+        <StackPanel Margin="15" Grid.Row="1">
+            <Label Content="Details of Transaction" Foreground="White" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></Label>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Contact Number: "></Label>
-                        <Label Content="{Binding Path=ContactNumber}"></Label>
-                    </StackPanel>
+            <StackPanel Margin="0,5,0,0">
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Amount Loaned: "></Label>
-                        <Label Content="{Binding Path=AmountLoaned}"></Label>
-                    </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Customer Name: "></Label>
+                    <Label Content="{Binding Path=CustomerName}"></Label>
+                </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Accumulated Amount: "></Label>
-                        <Label Content="{Binding Path=AccumulatedAmount}"></Label>
-                    </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Customer Address: "></Label>
+                    <Label Content="{Binding Path=CustomerAddress}"></Label>
+                </StackPanel>
 
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Contact Number: "></Label>
+                    <Label Content="{Binding Path=ContactNumber}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Amount Loaned: "></Label>
+                    <Label Content="{Binding Path=AmountLoaned}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Accumulated Amount: "></Label>
+                    <Label Content="{Binding Path=AccumulatedAmount}"></Label>
                 </StackPanel>
             </StackPanel>
-            
-        </ScrollViewer>
+        </StackPanel>
+
     </Grid>
 </Window>

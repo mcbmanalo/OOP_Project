@@ -32,6 +32,8 @@ namespace OOP_Project.ViewModels
 
         #endregion
 
+        #region Properties
+
         public string CustomerName
         {
             get => _customerName;
@@ -142,25 +144,6 @@ namespace OOP_Project.ViewModels
             }
         }
 
-        public string[] JewelryTypeOptions => Enum.GetNames(typeof(JewelryType));
-
-        private string[] jewelryQualityOptions = new string[3] { "10k", "18k", "21k" };
-
-        private MainVM MainVM { get; set; } = new MainVM();
-
-
-        public LoanTransactionVM()
-        {
-            
-        }
-
-        public LoanTransactionVM(MainVM main)
-        {
-            MainVM = main;
-        }
-
-        public ICommand TransactCommand => new RelayCommand(TransactProc);
-
         public string[] JewelryQualityOptions
         {
             get => jewelryQualityOptions;
@@ -170,6 +153,29 @@ namespace OOP_Project.ViewModels
                 RaisePropertyChanged(nameof(JewelryQualityOptions));
             }
         }
+
+        private MainVM MainVM { get; set; } = new MainVM();
+
+
+        #endregion
+
+        #region Constructors
+
+        public LoanTransactionVM()
+        {
+
+        }
+
+        public LoanTransactionVM(MainVM main)
+        {
+            MainVM = main;
+        }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand TransactCommand => new RelayCommand(TransactProc);
 
         private void TransactProc()
         {
@@ -193,13 +199,7 @@ namespace OOP_Project.ViewModels
 
         }
 
-        public enum JewelryType
-        {
-            Rings,
-            Necklaces,
-            Bracelets,
-            Earrings
-        }
+        #endregion
 
         private void ClearFields()
         {
@@ -214,6 +214,18 @@ namespace OOP_Project.ViewModels
             ActualValueJ = 0;
             AmountLoaned = 0;
             InterestRate = 0;
+        }
+
+        public string[] JewelryTypeOptions => Enum.GetNames(typeof(JewelryType));
+
+        private string[] jewelryQualityOptions = new string[3] { "10k", "18k", "21k" };
+
+        public enum JewelryType
+        {
+            Rings,
+            Necklaces,
+            Bracelets,
+            Earrings
         }
 
     }

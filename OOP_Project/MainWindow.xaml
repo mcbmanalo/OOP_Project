@@ -6,83 +6,98 @@
         xmlns:local="clr-namespace:OOP_Project"
         mc:Ignorable="d"
         DataContext="{Binding Path=MainVM, Source={StaticResource Locator}}"
-        Title="Jewelry Inventory" Height="450" Width="800">
+        Title="Jewelry Inventory" MinHeight="550" MinWidth="800" WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <Rectangle Fill="#4343db" Height="55" Grid.ColumnSpan="2" VerticalAlignment="Top"></Rectangle>
+
+        <Label Content="Please select a transaction to see the details" Foreground="Gray" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=SelectedTransaction ,ConverterParameter=inverse, Converter={StaticResource NullToVisibilityConverter}}"></Label>
+
         <StackPanel Grid.Column="1" Margin="15">
-           
+            <Label Content="Loan Details" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+
             <StackPanel Margin="0,15,0,0">
-                <Label Content="Loan Details" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+                
+                <StackPanel Visibility="{Binding Path=SelectedTransaction, Converter={StaticResource NullToVisibilityConverter}}">
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Customer Name: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.Name}" FontSize="14"></Label>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Customer Name: "></Label>
-                    <Label Content="{Binding Path=SelectedTransaction.Name}"></Label>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Customer Address: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.Address}" FontSize="14"></Label>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Customer Address: "></Label>
-                    <Label Content="{Binding Path=SelectedTransaction.Address}"></Label>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Contact Number: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.ContactNumber}" FontSize="14"></Label>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Contact Number: "></Label>
-                    <Label Content="{Binding Path=SelectedTransaction.ContactNumber}"></Label>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Amount Loaned: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.AmountLoaned}" FontSize="14"></Label>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Amount Loaned: "></Label>
-                    <Label Content="{Binding Path=SelectedTransaction.AmountLoaned}"></Label>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Interest Rate: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.InterestRate}" FontSize="14"></Label>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Interest Rate: "></Label>
-                    <Label Content="{Binding Path=SelectedTransaction.InterestRate}"></Label>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Jewelry Type: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.JewelryType}" FontSize="14"></Label>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Jewelry Type: "></Label>
-                    <Label Content="{Binding Path=SelectedTransaction.JewelryType}"></Label>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Other Details: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.OtherDetails}" FontSize="14"></Label>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Other Details: "></Label>
-                    <Label Content="{Binding Path=SelectedTransaction.OtherDetails}"></Label>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Balance: "></Label>
-                    <Label Content="{Binding Path=SelectedTransaction.Balance}"></Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Balance: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.Balance}" FontSize="14"></Label>
+                    </StackPanel>
                 </StackPanel>
 
             </StackPanel>
 
-      
-
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="25,25,25,15">
-            <Button Content="Loan Transaction" Command="{Binding Path=LoanCommand}" Margin="0,0,20,0"></Button>
-            <Button Content="Payment Transaction" Command="{Binding Path=PaymentCommand}" Margin="0,0,20,0"></Button>
-            <Button Content="Check Payments" Command="{Binding Path=CheckPaymentsCommand}" Margin="0,0,20,0"></Button>
-            <Button Content="Refresh List" Command="{Binding Path=RefreshTransactionListCommand}" Margin="0" Padding="5"></Button>
+            <Button Content="Loan Transaction" Command="{Binding Path=LoanCommand}" BorderThickness="0" Background="#4343db" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0,0,20,0" Padding="8"></Button>
+            <Button Content="Payment Transaction" Command="{Binding Path=PaymentCommand}" BorderThickness="0" Background="#4343db" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0,0,20,0" Padding="8"></Button>
+            <Button Content="Check Payments" Command="{Binding Path=CheckPaymentsCommand}" BorderThickness="0" Background="#4343db" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0,0,20,0" Padding="8"></Button>
+            <Button Content="Refresh List" Command="{Binding Path=RefreshTransactionListCommand}" BorderThickness="0" Background="#4343db" Foreground="White" FontSize="14" FontWeight="Bold" Margin="0" Padding="8"></Button>
         </StackPanel>
 
         <StackPanel Grid.Column="0" Margin="15">
             
-            <Label Content="Loan Transactions" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+            <Label Content="Loan Transactions" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"></Label>
             
-            <ListBox Height="300"
+            <ListBox Height="380"
                      Margin="20,10,20,20"
                      ItemsSource="{Binding Path=TransactionsList, Mode=TwoWay}"
                      SelectedItem="{Binding Path=SelectedTransaction, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <Label Content="{Binding Path=TransactionId}"></Label>
+                        <StackPanel Orientation="Horizontal">
+
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Transaction Id:"></Label>
+                                <Label Content="{Binding Path=TransactionId}"></Label>
+                            </StackPanel>
+                          
+                            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                <Label Content="Customer Name: "></Label>
+                                <Label Content="{Binding Path=Name}"></Label>
+                            </StackPanel>
+                           
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

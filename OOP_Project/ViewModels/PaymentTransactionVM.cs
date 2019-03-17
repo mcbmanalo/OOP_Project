@@ -108,9 +108,11 @@ namespace OOP_Project.ViewModels
 
         #endregion
 
+        #region Constructors
+
         public PaymentTransactionVM()
         {
-            
+
         }
 
         public PaymentTransactionVM(MainVM main)
@@ -118,11 +120,15 @@ namespace OOP_Project.ViewModels
             MainVM = main;
         }
 
+        #endregion
+
+        #region Commands
+
         public ICommand PayLoanCommand => new RelayCommand(PayLoanProc);
 
         private void PayLoanProc()
         {
-           
+
             TakeTransactionProc();
 
             if (Transaction.Balance == 0)
@@ -134,7 +140,7 @@ namespace OOP_Project.ViewModels
             {
                 var balance = AccumulatedAmount - AmountPaid;
 
-                var paymentTransactionToday = new PaymentTransactions( TransactionId, CustomerName, CustomerAddress, ContactNumber, AmountLoaned, AccumulatedAmount,
+                var paymentTransactionToday = new PaymentTransactions(TransactionId, CustomerName, CustomerAddress, ContactNumber, AmountLoaned, AccumulatedAmount,
                     AmountPaid, balance, DateTime.Today);
 
                 var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
@@ -179,6 +185,10 @@ namespace OOP_Project.ViewModels
             uow.CompleteWork();
             InputValues();
         }
+
+        #endregion
+
+        #region Private Methods
 
         private void InputValues()
         {
@@ -238,5 +248,8 @@ namespace OOP_Project.ViewModels
             AccumulatedAmount = 0;
             AmountLoaned = 0;
         }
+
+        #endregion
+
     }
 }
