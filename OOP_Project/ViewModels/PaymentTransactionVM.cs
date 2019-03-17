@@ -133,6 +133,10 @@ namespace OOP_Project.ViewModels
 
             if (Transaction.Balance == 0)
             {
+                MainVM._paymentTransactionWindow.Close();
+
+                ClearFields();
+
                 MessageBox.Show("This Loan has been fully paid.", "Full Paid", MessageBoxButton.OK);
             }
 
