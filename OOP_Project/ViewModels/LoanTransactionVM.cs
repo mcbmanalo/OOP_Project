@@ -175,7 +175,7 @@ namespace OOP_Project.ViewModels
 
         #region Commands
 
-        public ICommand TransactCommand => new RelayCommand(TransactProc);
+        public ICommand TransactCommand => new RelayCommand(TransactProc, TransactCondition);
 
         private void TransactProc()
         {
@@ -199,6 +199,10 @@ namespace OOP_Project.ViewModels
 
         }
 
+        private bool TransactCondition()
+        {
+            return CheckFields();
+        }
         #endregion
 
         private void ClearFields()
@@ -214,6 +218,16 @@ namespace OOP_Project.ViewModels
             ActualValueJ = 0;
             AmountLoaned = 0;
             InterestRate = 0;
+        }
+
+        private bool CheckFields()
+        {
+            if (CustomerName != "" && CustomerAddress != "" && ContactNumber != 0 && SelectedJewelryType != null &&
+                SelectedJewelryQuality != null && JewelryWeight > 0 &&
+                Discount > 0 && OtherDetails != "" && ActualValueJ > 0 && AmountLoaned > 0 && InterestRate > 0)
+                return true;
+
+            return false;
         }
 
         public string[] JewelryTypeOptions => Enum.GetNames(typeof(JewelryType));

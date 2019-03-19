@@ -124,7 +124,7 @@ namespace OOP_Project.ViewModels
 
         #region Commands
 
-        public ICommand PayLoanCommand => new RelayCommand(PayLoanProc);
+        public ICommand PayLoanCommand => new RelayCommand(PayLoanProc, PayLoanCondition);
 
         private void PayLoanProc()
         {
@@ -168,7 +168,12 @@ namespace OOP_Project.ViewModels
 
         }
 
-        public ICommand TakeTransactionCommand => new RelayCommand(TakeTransactionProc);
+        private bool PayLoanCondition()
+        {
+            return (TransactionId != 0 && AmountPaid > 0);
+        }
+
+        public ICommand TakeTransactionCommand => new RelayCommand(TakeTransactionProc, TakeTransactionCondition);
 
         private void TakeTransactionProc()
         {
@@ -188,6 +193,11 @@ namespace OOP_Project.ViewModels
 
             uow.CompleteWork();
             InputValues();
+        }
+
+        private bool TakeTransactionCondition()
+        {
+            return TransactionId != 0;
         }
 
         #endregion

@@ -45,8 +45,8 @@
                     </StackPanel>
 
                     <StackPanel>
-                        <Label Content="Weight of the Jewelry"></Label>
-                        <TextBox Text="{Binding Path=JewelryWeight, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
+                        <Label Content="Weight of the Jewelry (Grams)"></Label>
+                        <TextBox Text="{Binding Path=JewelryWeight, UpdateSourceTrigger=PropertyChanged}"  Margin="5,0,5,0"></TextBox>
                     </StackPanel>
 
                     <StackPanel>
