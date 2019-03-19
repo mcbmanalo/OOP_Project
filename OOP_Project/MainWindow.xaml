@@ -90,7 +90,7 @@
 
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="Transaction Id:"></Label>
-                                <Label Content="{Binding Path=TransactionId}"></Label>
+                                <Label Content="{Binding Path=TransactionId, Converter={StaticResource StringAdditionConverter}}"></Label>
                             </StackPanel>
                           
                             <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
