@@ -53,17 +53,17 @@
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Contact Number: "></Label>
-                    <Label Content="{Binding Path=ContactNumber}"></Label>
+                    <Label Content="{Binding Path=ContactNumber, Converter={StaticResource StringAdditionConverter}, ConverterParameter=number}"></Label>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Amount Loaned: "></Label>
-                    <Label Content="{Binding Path=AmountLoaned}"></Label>
+                    <Label Content="{Binding Path=AmountLoaned, Converter={StaticResource StringFormaterConverter}}"></Label>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Accumulated Amount: "></Label>
-                    <Label Content="{Binding Path=AccumulatedAmount}"></Label>
+                    <Label Content="{Binding Path=AccumulatedAmount, Converter={StaticResource StringFormaterConverter}}"></Label>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

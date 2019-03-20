@@ -36,12 +36,12 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Contact Number: " FontSize="14"></Label>
-                        <Label Content="{Binding Path=SelectedTransaction.ContactNumber}" FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.ContactNumber, Converter={StaticResource StringAdditionConverter}, ConverterParameter=number}" FontSize="14"></Label>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Amount Loaned: " FontSize="14"></Label>
-                        <Label Content="{Binding Path=SelectedTransaction.AmountLoaned}" FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.AmountLoaned, Converter={StaticResource StringFormaterConverter}}" FontSize="14"></Label>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -50,8 +50,33 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
+                        <Label Content="Balance: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.Balance, Converter={StaticResource StringFormaterConverter}}" FontSize="14"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Date Of Transaction: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.DateOfTransaction}" FontSize="14"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
                         <Label Content="Jewelry Type: " FontSize="14"></Label>
                         <Label Content="{Binding Path=SelectedTransaction.JewelryType}" FontSize="14"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Jewelry Quality: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.JewelryQuality}" FontSize="14"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Jewelry Weight: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.JewelryWeight, Converter={StaticResource StringFormaterConverter}, ConverterParameter=grams}" FontSize="14"></Label>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Discount: " FontSize="14"></Label>
+                        <Label Content="{Binding Path=SelectedTransaction.Discount, Converter={StaticResource StringFormaterConverter}, ConverterParameter=grams}" FontSize="14"></Label>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
@@ -59,10 +84,7 @@
                         <Label Content="{Binding Path=SelectedTransaction.OtherDetails}" FontSize="14"></Label>
                     </StackPanel>
 
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Balance: " FontSize="14"></Label>
-                        <Label Content="{Binding Path=SelectedTransaction.Balance}" FontSize="14"></Label>
-                    </StackPanel>
+
                 </StackPanel>
 
             </StackPanel>

@@ -45,12 +45,12 @@
                     </StackPanel>
 
                     <StackPanel>
-                        <Label Content="Weight of the Jewelry (Grams)"></Label>
+                        <Label Content="Weight of the Jewelry (grams)"></Label>
                         <TextBox Text="{Binding Path=JewelryWeight, UpdateSourceTrigger=PropertyChanged}"  Margin="5,0,5,0"></TextBox>
                     </StackPanel>
 
                     <StackPanel>
-                        <Label Content="Discount"></Label>
+                        <Label Content="Discount (grams)"></Label>
                         <TextBox Text="{Binding Path=Discount, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0"></TextBox>
                     </StackPanel>
 

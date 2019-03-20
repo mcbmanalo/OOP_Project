@@ -8,26 +8,18 @@ using System.Windows.Data;
 
 namespace OOP_Project.Converters
 {
-    public class StringAdditionConverter : IValueConverter
+    public class StringFormaterConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            bool isNumber = (parameter as string) == "number";
-            if (isNumber)
+            bool isGrams = (parameter as string) == "grams";
+            if (isGrams)
             {
-                var numberString = "0" + value.ToString();
-                return numberString;
+                var gramString = value.ToString() + " g";
+                return gramString;
             }
-            var count = value.ToString().Length;
-            var idString = value.ToString();
-            int counter = 7;
-            while (count != 8)
-            {
-                idString = "0" + idString;
-                count = idString.Length;
-            }
-
-            return idString;
+            string formatted = "₱ " + value.ToString();
+            return formatted;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

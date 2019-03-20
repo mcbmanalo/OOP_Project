@@ -36,7 +36,7 @@
 
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Amount Loaned: "></Label>
-                                    <Label Content="{Binding Path=AmountLoaned}"></Label>
+                                    <Label Content="{Binding Path=AmountLoaned, Converter={StaticResource StringFormaterConverter}}"></Label>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
@@ -46,22 +46,22 @@
 
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Contact Number: "></Label>
-                                    <Label Content="{Binding Path=ContactNumber}"></Label>
+                                    <Label Content="{Binding Path=ContactNumber, Converter={StaticResource StringAdditionConverter}, ConverterParameter=number}"></Label>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Previous Balance: "></Label>
-                                    <Label Content="{Binding Path=AccumulatedAmount}"></Label>
+                                    <Label Content="{Binding Path=AccumulatedAmount, Converter={StaticResource StringFormaterConverter}}"></Label>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Amount Paid: "></Label>
-                                    <Label Content="{Binding Path=AmountPaid}"></Label>
+                                    <Label Content="{Binding Path=AmountPaid, Converter={StaticResource StringFormaterConverter}}"></Label>
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
                                     <Label Content="Balance: "></Label>
-                                    <Label Content="{Binding Path=Balance}"></Label>
+                                    <Label Content="{Binding Path=Balance, Converter={StaticResource StringFormaterConverter}}"></Label>
                                 </StackPanel>
 
                             </StackPanel>

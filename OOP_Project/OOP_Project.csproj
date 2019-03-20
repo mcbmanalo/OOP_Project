@@ -167,9 +167,10 @@
     <Compile Include="Classes\Transaction.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\StringAdditionConverter.cs" />
-    <Compile Include="Migrations\20190316102924_v1.cs" />
-    <Compile Include="Migrations\20190316102924_v1.designer.cs">
-      <DependentUpon>20190316102924_v1.cs</DependentUpon>
+    <Compile Include="Converters\StringFormaterConverter.cs" />
+    <Compile Include="Migrations\20190320094503_v1.cs" />
+    <Compile Include="Migrations\20190320094503_v1.designer.cs">
+      <DependentUpon>20190320094503_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\OOProjectContextModelSnapshot.cs" />
     <Compile Include="Repository\EfRepository.cs" />

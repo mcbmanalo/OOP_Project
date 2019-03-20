@@ -140,6 +140,12 @@ namespace OOP_Project.ViewModels
                 MessageBox.Show("This Loan has been fully paid.", "Full Paid", MessageBoxButton.OK);
             }
 
+            if (AmountPaid > Transaction.Balance)
+            {
+                MessageBox.Show("The payment amount is greater than the balance of the loan.", "Payment Exceeded",
+                    MessageBoxButton.OK);
+            }
+
             else
             {
                 var balance = AccumulatedAmount - AmountPaid;
