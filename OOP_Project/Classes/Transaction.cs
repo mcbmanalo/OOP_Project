@@ -30,7 +30,7 @@ namespace OOP_Project.Classes
 
         public Transaction()
         {
-            
+            PaymentTransactionsList = new HashSet<PaymentTransactions>();
         }
 
         public Transaction(string name, string address, long contactNumber, string jewelryType, string jewelryQuality, double jewelryWeight, double discount,

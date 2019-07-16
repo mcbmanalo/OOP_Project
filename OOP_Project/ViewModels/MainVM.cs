@@ -35,6 +35,17 @@ namespace OOP_Project.ViewModels
         private LoanTransactionWindow _loanTransactionWindow;
         private PaymentTransactionWindow _paymentTransactionWindow;
         private ObservableCollection<Transaction> _transactionsList = new ObservableCollection<Transaction>();
+        private Transaction _selectedTransaction;
+
+        public Transaction SelectedTransaction
+        {
+            get => _selectedTransaction;
+            set
+            {
+                _selectedTransaction = value;
+                RaisePropertyChanged(nameof(SelectedTransaction));
+            }
+        }
 
         public ICommand RefreshTransactionListCommand => new RelayCommand(RefreshTransactionListProc);
 
@@ -68,6 +79,13 @@ namespace OOP_Project.ViewModels
             _paymentTransactionWindow = new PaymentTransactionWindow();
             _paymentTransactionWindow.Owner = Application.Current.MainWindow;
             _paymentTransactionWindow.ShowDialog();
+        }
+
+        public ICommand CheckPaymentsCommand => new RelayCommand(CheckPaymentsProc);
+
+        private void CheckPaymentsProc()
+        {
+
         }
 
         public MainVM()

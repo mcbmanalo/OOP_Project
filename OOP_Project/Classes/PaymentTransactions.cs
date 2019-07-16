@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using Microsoft.EntityFrameworkCore;
 
 namespace OOP_Project.Classes
 {
@@ -11,6 +12,7 @@ namespace OOP_Project.Classes
     {
         public int PaymentTransactionsId { get; set; }
         public int TransactionId { get; set; }
+
         public Transaction Transaction { get; set; }
         public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
@@ -26,7 +28,8 @@ namespace OOP_Project.Classes
             
         }
 
-        public PaymentTransactions(int transactionId, string customerName, string customerAddress, long contactNumber, double amountLoaned, double accumulatedAmount, double amountPaid, double balance, DateTime dateOfTransaction)
+        public PaymentTransactions(int transactionId, string customerName, string customerAddress, long contactNumber, double amountLoaned, double accumulatedAmount, double amountPaid,
+            double balance, DateTime dateOfTransaction)
         {
             TransactionId = transactionId;
             CustomerName = customerName;
@@ -37,6 +40,17 @@ namespace OOP_Project.Classes
             AmountPaid = amountPaid;
             Balance = balance;
             DateOfTransaction = dateOfTransaction;
+        }
+
+        private Transaction TakeTransation()
+        {
+            var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
+            Transaction transaction = uow.GetRepository<Transaction>().All()
+                .FirstOrDefault(c => c.TransactionId == TransactionId);
+
+            uow.CompleteWork();
+
+            return transaction;
         }
     }
 }

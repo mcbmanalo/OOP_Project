@@ -14,6 +14,7 @@ namespace OOP_Project.Repository
         void RemoveRange(ICollection<T> items);
         void Update(T item);
         void Update(ICollection<T> items);
+        void Detach(T item);
 
         IQueryable<T> All();
     }

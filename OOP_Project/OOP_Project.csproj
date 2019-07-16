@@ -165,9 +165,9 @@
     <Compile Include="Classes\OOProjectContext.cs" />
     <Compile Include="Classes\PaymentTransactions.cs" />
     <Compile Include="Classes\Transaction.cs" />
-    <Compile Include="Migrations\20190315164706_v1.cs" />
-    <Compile Include="Migrations\20190315164706_v1.designer.cs">
-      <DependentUpon>20190315164706_v1.cs</DependentUpon>
+    <Compile Include="Migrations\20190316102924_v1.cs" />
+    <Compile Include="Migrations\20190316102924_v1.designer.cs">
+      <DependentUpon>20190316102924_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\OOProjectContextModelSnapshot.cs" />
     <Compile Include="Repository\EfRepository.cs" />
@@ -179,6 +179,9 @@
     <Compile Include="ViewModels\LoanTransactionVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\PaymentTransactionVM.cs" />
+    <Compile Include="Windows\CheckPaymentsWindow.xaml.cs">
+      <DependentUpon>CheckPaymentsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LoanTransactionWindow.xaml.cs">
       <DependentUpon>LoanTransactionWindow.xaml</DependentUpon>
     </Compile>
@@ -201,6 +204,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\CheckPaymentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\LoanTransactionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,7 +240,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="References\Jewelry Inventory.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

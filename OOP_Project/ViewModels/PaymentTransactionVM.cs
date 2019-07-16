@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -100,34 +102,42 @@ namespace OOP_Project.ViewModels
 
         public Transaction Transaction { get; set; }
 
+        public ObservableCollection<PaymentTransactions> PaymentTransactions { get; set; } = new ObservableCollection<PaymentTransactions>();
+
         #endregion
 
         public ICommand PayLoanCommand => new RelayCommand(PayLoanProc);
 
         private void PayLoanProc()
         {
-            if (Transaction == null)
+           
+            TakeTransactionProc();
+
+            if (Transaction.Balance == 0)
             {
-                TakeTransactionProc();
+                MessageBox.Show("This Loan has been fully paid.", "Full Paid", MessageBoxButton.OK);
             }
 
-            var paymentTransactionToday = new PaymentTransactions( TransactionId, CustomerName, CustomerAddress, ContactNumber, AmountLoaned, AccumulatedAmount,
-                AmountPaid, AccumulatedAmount-AmountPaid, DateTime.Today );
-
-            var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
-
-            uow.GetRepository<PaymentTransactions>().Add(paymentTransactionToday);
-
-            if (Transaction.PaymentTransactionsList == null)
+            else
             {
-                Transaction.PaymentTransactionsList = new List<PaymentTransactions>();
+                var balance = AccumulatedAmount - AmountPaid;
+
+                var paymentTransactionToday = new PaymentTransactions( TransactionId, CustomerName, CustomerAddress, ContactNumber, AmountLoaned, AccumulatedAmount,
+                    AmountPaid, balance, DateTime.Today);
+
+                var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
+
+                uow.GetRepository<PaymentTransactions>().Add(paymentTransactionToday);
+
+                Transaction.Balance = balance;
+
+                uow.GetRepository<Transaction>().Update(Transaction);
+
+                uow.CompleteWork();
+                ClearFields();
+                MessageBox.Show("Payment has been deducted from the previous balance.", "Payment Successful",
+                    MessageBoxButton.OK);
             }
-
-            Transaction.PaymentTransactionsList.Add(paymentTransactionToday);
-
-            uow.GetRepository<Transaction>().Update(Transaction);
-
-            uow.CompleteWork();
 
         }
 
@@ -136,10 +146,18 @@ namespace OOP_Project.ViewModels
         private void TakeTransactionProc()
         {
             var uow = new UnitOfWork.UnitOfWork(new OOProjectContext());
-            Transaction.PaymentTransactionsList = uow.GetRepository<PaymentTransactions>().All()
+
+            Transaction = uow.GetRepository<Transaction>().All()
+                .FirstOrDefault(c => c.TransactionId == TransactionId);
+
+            var paymentTransactions = uow.GetRepository<PaymentTransactions>().All()
                 .Where(c => c.TransactionId == TransactionId)
-                .Include(navigationPropertyPath: c => c.Transaction)
                 .ToList();
+
+            foreach (var payments in paymentTransactions)
+            {
+                PaymentTransactions.Add(payments);
+            }
 
             uow.CompleteWork();
             InputValues();
@@ -156,7 +174,7 @@ namespace OOP_Project.ViewModels
 
         private double CalculateAccumulatedAmount()
         {
-            if (Transaction.PaymentTransactionsList == null)
+            if (PaymentTransactions == null || PaymentTransactions.Count == 0)
             {
                 var past = Transaction.DateOfTransaction;
                 var now = DateTime.Today;
@@ -168,7 +186,7 @@ namespace OOP_Project.ViewModels
 
             else
             {
-                var past = DateTime.Parse("January 0, 0000");
+                var past = DateTime.Parse("January 1, 0001");
                 var now = DateTime.Today;
                 PaymentTransactions paymentTransaction = null;
 
@@ -190,6 +208,12 @@ namespace OOP_Project.ViewModels
         private double GetInterest(double age)
         {
             return Transaction.AmountLoaned * Transaction.InterestRate * (age / 30);
+        }
+
+        private void ClearFields()
+        {
+            TransactionId = 0;
+            AmountPaid = 0;
         }
     }
 }

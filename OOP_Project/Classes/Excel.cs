@@ -15,7 +15,7 @@ namespace OOP_Project.Classes
         //public string Path = @"C:\Users\Admin\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
         //public string Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Tax Table.xlsx";
 
-        _Application excel = new _Excel.Application();
+        //_Application excel = new _Excel.Application();
         private Workbook WorkBook;
         private Worksheet WorkSheet;
         private int _row;
@@ -55,9 +55,9 @@ namespace OOP_Project.Classes
         public Excel()
         {
             //Path = @"C:\Users\MCBManalo\Source\Repos\OOP_Project\OOP_Project\References\Jewelry Inventory.xlsx";
-            Path = @"C:\Users\Carmela Manalo\Source\Repos\OOP_Project\OOP_Project\References\Jewelry Inventory.xlsx";
-            WorkBook = excel.Workbooks.Open(Path);
-            WorkSheet = WorkBook.Worksheets[1];
+            //Path = @"C:\Users\Carmela Manalo\Source\Repos\OOP_Project\OOP_Project\References\Jewelry Inventory.xlsx";
+            //WorkBook = excel.Workbooks.Open(Path);
+            //WorkSheet = WorkBook.Worksheets[1];
         }
 
         public string ReadCell(int row , int column)

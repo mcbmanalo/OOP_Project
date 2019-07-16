@@ -53,6 +53,11 @@ namespace OOP_Project.Repository
             _context.Set<T>().UpdateRange(items);
         }
 
+        public void Detach(T item)
+        {
+            _context.Entry(item).State = EntityState.Detached;
+        }
+
         public IQueryable<T> All()
         {
             return _context.Set<T>();

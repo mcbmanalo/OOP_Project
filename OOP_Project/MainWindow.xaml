@@ -14,15 +14,62 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="1" Margin="15">
-          
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="Refresh List" Command="{Binding Path=RefreshTransactionListCommand}" Margin="0,0,20,0"></Button>
-                <Button Content="Loan Transaction" Command="{Binding Path=LoanCommand}" Margin="0,0,20,0"></Button>
-                <Button Content="Payment Transaction" Command="{Binding Path=PaymentCommand}" Margin="0"></Button>
-            </StackPanel>
            
+            <StackPanel Margin="0,15,0,0">
+                <Label Content="Loan Details" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"></Label>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Customer Name: "></Label>
+                    <Label Content="{Binding Path=SelectedTransaction.Name}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Customer Address: "></Label>
+                    <Label Content="{Binding Path=SelectedTransaction.Address}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Contact Number: "></Label>
+                    <Label Content="{Binding Path=SelectedTransaction.ContactNumber}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Amount Loaned: "></Label>
+                    <Label Content="{Binding Path=SelectedTransaction.AmountLoaned}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Interest Rate: "></Label>
+                    <Label Content="{Binding Path=SelectedTransaction.InterestRate}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Jewelry Type: "></Label>
+                    <Label Content="{Binding Path=SelectedTransaction.JewelryType}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Other Details: "></Label>
+                    <Label Content="{Binding Path=SelectedTransaction.OtherDetails}"></Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Balance: "></Label>
+                    <Label Content="{Binding Path=SelectedTransaction.Balance}"></Label>
+                </StackPanel>
+
+            </StackPanel>
+
+      
+
         </StackPanel>
-        
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Margin="25,25,25,15">
+            <Button Content="Loan Transaction" Command="{Binding Path=LoanCommand}" Margin="0,0,20,0"></Button>
+            <Button Content="Payment Transaction" Command="{Binding Path=PaymentCommand}" Margin="0,0,20,0"></Button>
+            <Button Content="Check Payments" Command="{Binding Path=CheckPaymentsCommand}" Margin="0,0,20,0"></Button>
+            <Button Content="Refresh List" Command="{Binding Path=RefreshTransactionListCommand}" Margin="0" Padding="5"></Button>
+        </StackPanel>
 
         <StackPanel Grid.Column="0" Margin="15">
             
@@ -30,7 +77,8 @@
             
             <ListBox Height="300"
                      Margin="20,10,20,20"
-                     ItemsSource="{Binding Path=TransactionsList, Mode=TwoWay}">
+                     ItemsSource="{Binding Path=TransactionsList, Mode=TwoWay}"
+                     SelectedItem="{Binding Path=SelectedTransaction, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
